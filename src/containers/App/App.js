@@ -21,7 +21,8 @@ export class App extends Component {
   connectChatkit = () => {
     chatManager.connect()
       .then(currentUser => {
-        currentUser.subscribeToRoom({
+        this.currentUser = currentUser;
+        this.currentUser.subscribeToRoom({
           roomId: currentUser.rooms[0].id,
           hooks: {
             onMessage: message => {
@@ -37,11 +38,19 @@ export class App extends Component {
       });
   }
 
+  sendMessage = (text) => {
+    this.currentUser.sendMessage({
+      text,
+      roomId: this.currentUser.rooms[0].id
+    });
+
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <SendMessageForm />
+        <SendMessageForm sendMessage={this.sendMessage} />
         <MessageList messages={this.state.messages} />
       </div>
     );
