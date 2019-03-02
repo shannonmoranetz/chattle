@@ -15,26 +15,12 @@ const store = createStore(rootReducer, devTools);
 const tokenProvider = new Chatkit.TokenProvider({
   url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/246b3612-b77d-450d-824f-85cf24e32654/token"
 });
-const chatManager = new Chatkit.ChatManager({
+export const chatManager = new Chatkit.ChatManager({
   instanceLocator: "v1:us1:246b3612-b77d-450d-824f-85cf24e32654",
   userId: "shannon",
   tokenProvider: tokenProvider
 });
-chatManager
-.connect()
-  .then(currentUser => {
-    currentUser.subscribeToRoom({
-      roomId: currentUser.rooms[0].id,
-      hooks: {
-        onMessage: message => {
-          console.log(`Received new message: ${message.text}`)
-        }
-      }
-    });
-  })
-  .catch(error => {
-    console.error("error:", error);
-  });
+
   
 ReactDOM.render(
   <Provider store={store}>
