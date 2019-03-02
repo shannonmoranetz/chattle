@@ -35,7 +35,10 @@ export class App extends Component {
   getRooms = () => {
     this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
-        this.setState({ joinableRooms, joinedRooms: this.currentUser.rooms })
+        this.setState({ 
+          joinableRooms, 
+          joinedRooms: this.currentUser.rooms 
+        })
       })
       .catch(error => console.log('error on joinableRooms: ', error))
   }
@@ -75,8 +78,10 @@ export class App extends Component {
         <Header />
         <SendMessageForm sendMessage={this.sendMessage} />
         <MessageList messages={this.state.messages} />
-        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
-          subscribeToRoom={this.subscribeToRoom} />
+        <RoomList   rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+                    subscribeToRoom={this.subscribeToRoom} 
+                    roomId={this.state.roomId}
+                    />
       </div>
     );
   }
