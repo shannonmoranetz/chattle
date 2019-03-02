@@ -3,6 +3,7 @@ import Chatkit from '@pusher/chatkit-client';
 import { chatManager } from '../../index';
 import Header from '../../components/Header/Header';
 import MessageList from '../../components/MessageList/MessageList';
+import SendMessageForm from '../SendMessageForm/SendMessageForm';
 
 export class App extends Component {
 
@@ -40,7 +41,8 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        <MessageList messages={this.state.messages}/>
+        <SendMessageForm />
+        <MessageList messages={this.state.messages} />
       </div>
     );
   }
