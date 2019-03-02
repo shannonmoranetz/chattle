@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import MessageList from '../../components/MessageList/MessageList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
 import RoomList from '../../components/RoomList/RoomList';
+import NewRoomForm from '../NewRoomForm/NewRoomForm';
 
 export class App extends Component {
 
@@ -69,19 +70,27 @@ export class App extends Component {
       text,
       roomId: this.state.roomId
     });
+  }
 
+  createRoom = (name) => {
+    this.currentUser.createRoom({
+      name
+    })
+  .then(room => this.subscribeToRoom(room.id))
+  .catch(error => console.log('error with createRoom: ', error))
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <SendMessageForm sendMessage={this.sendMessage} />
-        <MessageList messages={this.state.messages} />
         <RoomList   rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
                     subscribeToRoom={this.subscribeToRoom} 
                     roomId={this.state.roomId}
-                    />
+        />
+        <MessageList messages={this.state.messages} />
+        <SendMessageForm sendMessage={this.sendMessage} />
+        <NewRoomForm createRoom={this.createRoom} />
       </div>
     );
   }
