@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Chatkit from '@pusher/chatkit-client';
 import { chatManager } from '../../index';
 import Header from '../../components/Header/Header';
 import MessageList from '../../components/MessageList/MessageList';
@@ -13,7 +12,8 @@ export class App extends Component {
     this.state = {
       messages: [],
       joinableRooms: [],
-      joinedRooms: []
+      joinedRooms: [],
+      roomId: null
     }
   }
 
@@ -24,8 +24,8 @@ export class App extends Component {
   connectChatkit = () => {
     chatManager.connect()
       .then(currentUser => {
-        this.currentUser = currentUser;
-          this.getRooms();
+        this.currentUser = currentUser
+        this.getRooms();
       })
       .catch(error => {
         console.error('error on connecting:', error);
@@ -34,13 +34,14 @@ export class App extends Component {
 
   getRooms = () => {
     this.currentUser.getJoinableRooms()
-    .then(joinableRooms => {
-      this.setState({ joinableRooms, joinedRooms: this.currentUser.rooms })
-    })
-    .catch(error => console.log('error on joinableRooms: ', error))
+      .then(joinableRooms => {
+        this.setState({ joinableRooms, joinedRooms: this.currentUser.rooms })
+      })
+      .catch(error => console.log('error on joinableRooms: ', error))
   }
 
   subscribeToRoom = (roomId) => {
+    this.setState({ messages: [] })
     this.currentUser.subscribeToRoom({
       roomId,
       hooks: {
@@ -50,13 +51,20 @@ export class App extends Component {
           })
         }
       }
-    });
+    })
+      .then(room => {
+        this.setState({
+          roomId: room.id
+        })
+        this.getRooms();
+      })
+        .catch(error => console.log('error on subscribing to room: ', error))
   }
 
   sendMessage = (text) => {
     this.currentUser.sendMessage({
       text,
-      roomId: this.currentUser.rooms[0].id
+      roomId: this.state.roomId
     });
 
   }
@@ -68,7 +76,7 @@ export class App extends Component {
         <SendMessageForm sendMessage={this.sendMessage} />
         <MessageList messages={this.state.messages} />
         <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
-                  subscribeToRoom={this.subscribeToRoom} />
+          subscribeToRoom={this.subscribeToRoom} />
       </div>
     );
   }

@@ -3,7 +3,6 @@ import Message from '../Message/Message';
 
 class MessageList extends React.Component {
 
-
   render() {
     return (
       <div className="MessageList">

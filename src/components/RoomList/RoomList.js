@@ -8,7 +8,7 @@ export class RoomList extends Component {
           <h3>rooms:</h3>
           {this.props.rooms.map(room => {
             return (
-              <li key="room.id" className="room">
+              <li key={room.id} className="room">
                 <a href="#" onClick={() => this.props.subscribeToRoom(room.id)}># {room.name}</a>
               </li>
             )
