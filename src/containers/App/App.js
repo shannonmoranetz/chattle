@@ -6,15 +6,9 @@ import MessageList from '../../components/MessageList/MessageList';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import RoomList from '../../components/RoomList/RoomList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
-import { resetMessages, addMessage, sortRooms } from '../../actions';
+import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      roomId: null
-    }
-  }
 
   componentDidMount = () => {
     this.connectChatkit();
@@ -26,7 +20,7 @@ export class App extends Component {
       this.currentUser = currentUser;
       this.getRooms();
     } catch (error) {
-      console.log('error on connecting:', error);
+      console.log('Error on connecting:', error);
     }
   }
 
@@ -36,7 +30,7 @@ export class App extends Component {
       const rooms = [...joinableRooms, ...this.currentUser.rooms]
       this.props.sortRooms(rooms);
     } catch (error) {
-      console.log('error on joinableRooms: ', error);
+      console.log('Error on getting rooms: ', error);
     }
   }
 
@@ -51,19 +45,17 @@ export class App extends Component {
           }
         }
       })
-      this.setState({
-        roomId: room.id
-      })
+      this.props.updateCurrentRoom(room.id)
       this.getRooms();
     } catch (error) {
-      console.log('error on subscribing to room: ', error)
+      console.log('Error on subscribing to room: ', error)
     }
   }
 
   sendMessage = (text) => {
     this.currentUser.sendMessage({
       text,
-      roomId: this.state.roomId
+      roomId: this.props.currentRoomId
     })
   }
 
@@ -74,7 +66,7 @@ export class App extends Component {
       })
       this.subscribeToRoom(room.id)
     } catch (error) {
-      console.log('error with createRoom: ', error)
+      console.log('Error on creating room: ', error)
     }
   }
 
@@ -82,14 +74,10 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        <RoomList rooms={this.props.rooms}
-                  roomId={this.state.roomId}
-                  subscribeToRoom={this.subscribeToRoom}
-        />
-        <MessageList  roomId={this.state.roomId}
-                      messages={this.state.messages} />
+        <RoomList subscribeToRoom={this.subscribeToRoom} />
+        <MessageList />
         <SendMessageForm  sendMessage={this.sendMessage}
-                          disabled={!this.state.roomId} />
+                          disabled={!this.props.currentRoomId} />
         <NewRoomForm  createRoom={this.createRoom} />
       </div>
     );
@@ -98,13 +86,15 @@ export class App extends Component {
 
 export const mapStateToProps = (state) => ({
   messages: state.messages,
-  rooms: state.rooms
+  rooms: state.rooms,
+  currentRoomId: state.currentRoomId
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   resetMessages: (messages) => dispatch(resetMessages(messages)),
   addMessage: (message) => dispatch(addMessage(message)),
-  sortRooms: (rooms) => dispatch(sortRooms(rooms))
+  sortRooms: (rooms) => dispatch(sortRooms(rooms)),
+  updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

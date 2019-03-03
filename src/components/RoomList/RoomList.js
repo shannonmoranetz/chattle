@@ -9,10 +9,10 @@ export class RoomList extends Component {
         <ul>
           <h3>rooms:</h3>
           {this.props.rooms.map(room => {
-            const active = this.props.roomId === room.id ? '-active' : '';
+            const active = this.props.currentRoomId === room.id ? '-active' : '';
             return (
               <li key={room.id} className={'room' + active}>
-                <a href="#" onClick={() => this.props.subscribeToRoom(room.id)}># {room.name}</a>
+                <div href="#" onClick={() => this.props.subscribeToRoom(room.id)}># {room.name}</div>
               </li>
             )
           })}
@@ -23,7 +23,8 @@ export class RoomList extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  rooms: state.rooms
+  rooms: state.rooms,
+  currentRoomId: state.currentRoomId
 })
 
 export default connect(mapStateToProps)(RoomList);

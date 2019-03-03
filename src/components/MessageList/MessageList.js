@@ -19,7 +19,7 @@ export class MessageList extends Component {
   render() {
     return (
       <div className="MessageList">
-        {!this.props.roomId ? (
+        {!this.props.currentRoomId ? (
           <div className="join-room">join a room...</div>
         ) : (
             <div className="messages">
@@ -36,7 +36,8 @@ export class MessageList extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  messages: state.messages
+  messages: state.messages,
+  currentRoomId: state.currentRoomId
 })
 
 export default connect(mapStateToProps)(MessageList);
