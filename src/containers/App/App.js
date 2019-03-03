@@ -11,10 +11,10 @@ import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../a
 export class App extends Component {
 
   componentDidMount = () => {
-    this.connectChatkit();
+    this.initializeChat();
   }
 
-  connectChatkit = async () => {
+  initializeChat = async () => {
     try {
       let currentUser = await chatManager.connect();
       this.currentUser = currentUser;
@@ -75,12 +75,12 @@ export class App extends Component {
       <div className="App">
         <Header />
         <RoomList subscribeToRoom={this.subscribeToRoom} />
+        <NewRoomForm  createRoom={this.createRoom} />
         <MessageList />
         <SendMessageForm  sendMessage={this.sendMessage}
                           disabled={!this.props.currentRoomId} />
-        <NewRoomForm  createRoom={this.createRoom} />
       </div>
-    );
+    )
   }
 }
 
