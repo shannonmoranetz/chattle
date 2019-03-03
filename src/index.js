@@ -21,7 +21,6 @@ export const chatManager = new Chatkit.ChatManager({
   tokenProvider: tokenProvider
 });
 
-  
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

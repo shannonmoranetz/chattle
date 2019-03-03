@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 
 export class NewRoomForm extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -23,14 +22,14 @@ export class NewRoomForm extends React.Component {
 
   render() {
     return (
-      <div className="new-room-form">
+      <div className="NewRoomForm">
         <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.roomName}
-            placeholder="new room"
-            required />
+          <input  onChange={this.handleChange}
+                  type="text"
+                  value={this.state.roomName}
+                  placeholder="new room"
+                  required 
+          />
           <button id="create-room-btn" type="submit">+</button>
         </form>
       </div>

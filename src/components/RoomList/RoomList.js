@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class RoomList extends Component {
+  
   render() {
     const orderedRooms = [...this.props.rooms].sort((a, b) => a.id - b.id)
     return (
