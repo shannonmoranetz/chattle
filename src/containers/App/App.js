@@ -6,14 +6,12 @@ import MessageList from '../../components/MessageList/MessageList';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import RoomList from '../../components/RoomList/RoomList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
-import { resetMessages, addMessage } from '../../actions';
+import { resetMessages, addMessage, sortRooms } from '../../actions';
 
 export class App extends Component {
   constructor() {
     super();
     this.state = {
-      joinableRooms: [],
-      joinedRooms: [],
       roomId: null
     }
   }
@@ -35,12 +33,9 @@ export class App extends Component {
   getRooms = async () => {
     try {
       let joinableRooms = await this.currentUser.getJoinableRooms()
-      this.setState({
-        joinableRooms,
-        joinedRooms: this.currentUser.rooms
-      })
-    }
-    catch (error) {
+      const rooms = [...joinableRooms, ...this.currentUser.rooms]
+      this.props.sortRooms(rooms);
+    } catch (error) {
       console.log('error on joinableRooms: ', error);
     }
   }
@@ -60,8 +55,7 @@ export class App extends Component {
         roomId: room.id
       })
       this.getRooms();
-    }
-    catch (error) {
+    } catch (error) {
       console.log('error on subscribing to room: ', error)
     }
   }
@@ -88,7 +82,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+        <RoomList rooms={this.props.rooms}
                   roomId={this.state.roomId}
                   subscribeToRoom={this.subscribeToRoom}
         />
@@ -103,12 +97,14 @@ export class App extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  messages: state.messages
+  messages: state.messages,
+  rooms: state.rooms
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   resetMessages: (messages) => dispatch(resetMessages(messages)),
-  addMessage: (message) => dispatch(addMessage(message))
+  addMessage: (message) => dispatch(addMessage(message)),
+  sortRooms: (rooms) => dispatch(sortRooms(rooms))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

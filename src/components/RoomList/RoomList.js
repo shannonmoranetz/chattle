@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export class RoomList extends Component {
   
   render() {
-    const orderedRooms = [...this.props.rooms].sort((a, b) => a.id - b.id)
     return (
       <div className="RoomList">
         <ul>
           <h3>rooms:</h3>
-          {orderedRooms.map(room => {
+          {this.props.rooms.map(room => {
             const active = this.props.roomId === room.id ? '-active' : '';
             return (
               <li key={room.id} className={'room' + active}>
@@ -22,4 +22,8 @@ export class RoomList extends Component {
   }
 }
 
-export default RoomList;
+export const mapStateToProps = (state) => ({
+  rooms: state.rooms
+})
+
+export default connect(mapStateToProps)(RoomList);

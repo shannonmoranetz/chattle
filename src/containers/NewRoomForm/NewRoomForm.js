@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export class NewRoomForm extends React.Component {
+export class NewRoomForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,7 +30,7 @@ export class NewRoomForm extends React.Component {
                   placeholder="new room"
                   required 
           />
-          <button id="create-room-btn" type="submit">+</button>
+          <button id="create-room" type="submit">+</button>
         </form>
       </div>
     )
