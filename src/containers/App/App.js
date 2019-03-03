@@ -6,9 +6,16 @@ import MessageList from '../../components/MessageList/MessageList';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import RoomList from '../../components/RoomList/RoomList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
+import SignUpForm from '../SignUpForm/SignUpForm';
 import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
 
 export class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentUsername: ''
+    }
+  }
 
   componentDidMount = () => {
     this.initializeChat();
@@ -70,15 +77,32 @@ export class App extends Component {
     }
   }
 
+  onUsernameSubmitted = (username) => {
+    fetch('http://localhost:3001/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username }),
+    })
+      .then(response => {
+        this.setState({
+          currentUsername: username
+        })
+      })
+      .catch(error => console.error('error', error))
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
+        <SignUpForm onUsernameSubmitted={this.onUsernameSubmitted} />
         <RoomList subscribeToRoom={this.subscribeToRoom} />
-        <NewRoomForm  createRoom={this.createRoom} />
+        <NewRoomForm createRoom={this.createRoom} />
         <MessageList />
-        <SendMessageForm  sendMessage={this.sendMessage}
-                          disabled={!this.props.currentRoomId} />
+        <SendMessageForm sendMessage={this.sendMessage}
+          disabled={!this.props.currentRoomId} />
       </div>
     )
   }
