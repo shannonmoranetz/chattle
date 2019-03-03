@@ -88,8 +88,10 @@ export class App extends Component {
                     subscribeToRoom={this.subscribeToRoom} 
                     roomId={this.state.roomId}
         />
-        <MessageList messages={this.state.messages} />
-        <SendMessageForm sendMessage={this.sendMessage} />
+        <MessageList  roomId={this.state.roomId}
+                      messages={this.state.messages} />
+        <SendMessageForm  sendMessage={this.sendMessage}
+                          disabled={!this.state.roomId}/>
         <NewRoomForm createRoom={this.createRoom} />
       </div>
     );

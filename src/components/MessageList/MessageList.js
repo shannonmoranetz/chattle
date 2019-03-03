@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Message from '../Message/Message';
 
-class MessageList extends React.Component {
+export class MessageList extends React.Component {
 
   getSnapshotBeforeUpdate = () => {
     const node = ReactDOM.findDOMNode(this)
@@ -15,16 +15,26 @@ class MessageList extends React.Component {
   }
 
   render() {
-    return (
-      <div className="MessageList">
-        {this.props.messages.map((message, i) => {
-          return (
-            <Message key={i} username={message.senderId} text={message.text} />
-          )
-        })}
-      </div>
-    )
+    if (!this.props.roomId) {
+      return (
+        <div className="message-list">
+          <div className="join-room">
+            &larr; Join a room!
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="MessageList">
+          {this.props.messages.map((message, i) => {
+            return (
+              <Message key={i} username={message.senderId} text={message.text} />
+            )
+          })}
+        </div>
+      )
+    }
   }
 }
 
-export default MessageList
+export default MessageList;

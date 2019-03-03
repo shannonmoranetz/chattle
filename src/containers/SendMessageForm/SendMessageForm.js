@@ -25,6 +25,7 @@ export class SendMessageForm extends Component {
                   placeholder="message"
                   type="text" 
                   value={this.state.message}
+                  disabled={this.props.disabled}
           />
       </form>
     )
