@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { chatManager } from '../../index';
+import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MessageList from '../../components/MessageList/MessageList';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import RoomList from '../../components/RoomList/RoomList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
+import { resetMessages, addMessage } from '../../actions';
 
 export class App extends Component {
   constructor() {
     super();
     this.state = {
-      messages: [],
       joinableRooms: [],
       joinedRooms: [],
       roomId: null
@@ -46,14 +47,12 @@ export class App extends Component {
 
   subscribeToRoom = async (roomId) => {
     try {
-      this.setState({ messages: [] })
+      this.props.resetMessages();
       let room = await this.currentUser.subscribeToRoom({
         roomId,
         hooks: {
           onMessage: message => {
-            this.setState({
-              messages: [...this.state.messages, message]
-            })
+            this.props.addMessage(message)
           }
         }
       })
@@ -103,4 +102,13 @@ export class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = (state) => ({
+  messages: state.messages
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  resetMessages: (messages) => dispatch(resetMessages(messages)),
+  addMessage: (message) => dispatch(addMessage(message))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
