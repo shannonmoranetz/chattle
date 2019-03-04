@@ -25,7 +25,8 @@ export class ChatBox extends Component {
       this.currentUser = currentUser;
       this.getRooms();
     } catch (error) {
-      console.log('Error on connecting:', error);
+      console.log(error)
+      this.props.setError(`Error on connecting: ${error.info.error_description}`);
     }
   }
 
@@ -35,7 +36,7 @@ export class ChatBox extends Component {
       const rooms = [...joinableRooms, ...this.currentUser.rooms]
       this.props.sortRooms(rooms);
     } catch (error) {
-      console.log('Error on getting rooms: ', error);
+      this.props.setError(`Error on room fetch: ${error.info.error_description}`);
     }
   }
 
@@ -53,7 +54,7 @@ export class ChatBox extends Component {
       this.props.updateCurrentRoom(room.id)
       this.getRooms();
     } catch (error) {
-      console.log('Error on subscribing to room: ', error)
+      this.props.setError(`Error on room subscription: ${error.info.error_description}`);
     }
   }
 
@@ -71,7 +72,7 @@ export class ChatBox extends Component {
       })
       this.subscribeToRoom(room.id)
     } catch (error) {
-      console.log('Error on creating room: ', error)
+      this.props.setError(`Error on room creation: ${error.info.error_description}`);
     }
   }
 
