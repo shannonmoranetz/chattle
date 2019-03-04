@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setLoading } from '../../actions';
 import ChatBox from '../ChatBox/ChatBox';
 import Header from '../../components/Header/Header';
+import Loader from '../../components/Loader/Loader';
 
 export class App extends Component {
 
@@ -13,14 +14,14 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.props.isLoading ? (
-        <h2>loading...</h2>
-      ) : (
-        <div className="app-items">
-          <Header />
-          <ChatBox />
-        </div>
-      )}
+        {this.props.isLoading ? (
+          <Loader />
+        ) : (
+            <div className="app-items">
+              <Header />
+              <ChatBox />
+            </div>
+          )}
       </div>
     )
   }
