@@ -9,9 +9,6 @@ import SendMessageForm from '../../components/SendMessageForm/SendMessageForm';
 import UserForm from '../UserForm/UserForm';
 
 export class ChatBox extends Component {
-  componentDidMount = () => {
-    this.loginUser();
-  }
 
   loginUser = () => {
     this.initializeChat();
