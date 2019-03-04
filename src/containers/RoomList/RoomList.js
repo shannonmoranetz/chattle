@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateCurrentRoom } from '../../actions';
 import NewRoomForm from '../../components/NewRoomForm/NewRoomForm';
 
 export class RoomList extends Component {
@@ -11,7 +12,8 @@ export class RoomList extends Component {
   }
 
   handleClick = () => {
-    this.setState({ showNewRoomForm: !this.state.showNewRoomForm })
+    this.setState({ showNewRoomForm: !this.state.showNewRoomForm });
+    this.props.updateCurrentRoom('');
   }
 
   render() {
@@ -19,7 +21,8 @@ export class RoomList extends Component {
       <div className="RoomList">
         <h3>rooms:</h3>
         {this.state.showNewRoomForm ? (
-          <NewRoomForm createRoom={this.props.createRoom} />
+          <NewRoomForm  createRoom={this.props.createRoom}
+                        updateDisplay={this.handleClick} />
         ) : (
             <div className="room-items">
               <ul>
@@ -32,18 +35,21 @@ export class RoomList extends Component {
                   )
                 })}
               </ul>
+              <div onClick={this.handleClick}>create new room</div>
             </div>
           )}
-        <div onClick={this.handleClick}>create new room</div>
       </div>
     )
   }
 }
-
 
 export const mapStateToProps = (state) => ({
   rooms: state.rooms,
   currentRoomId: state.currentRoomId
 })
 
-export default connect(mapStateToProps)(RoomList);
+export const mapDispatchToProps = (dispatch) => ({
+  updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomList);

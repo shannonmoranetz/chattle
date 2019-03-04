@@ -86,12 +86,11 @@ export class ChatBox extends Component {
         ) : (
             <div className="chat-components">
               <RoomList subscribeToRoom={this.subscribeToRoom}
-                        createRoom={this.createRoom} />
+                createRoom={this.createRoom} />
               <MessageList />
-              <SendMessageForm  sendMessage={this.sendMessage}
-                                disabled={!this.props.currentRoomId} />
             </div>
           )}
+        {this.props.currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
       </div>
     )
   }
@@ -99,7 +98,8 @@ export class ChatBox extends Component {
 
 export const mapStateToProps = (state) => ({
   currentRoomId: state.currentRoomId,
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  rooms: state.rooms
 })
 
 export const mapDispatchToProps = (dispatch) => ({

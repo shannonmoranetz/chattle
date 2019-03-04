@@ -21,12 +21,11 @@ export class SendMessageForm extends Component {
   render() {
     return (
       <form className="SendMessageForm" onSubmit={this.handleSubmit}>
-          <input  onChange={this.handleChange}
-                  placeholder="message"
-                  type="text" 
-                  value={this.state.message}
-                  disabled={this.props.disabled}
-          />
+        <input onChange={this.handleChange}
+          placeholder="message"
+          type="text"
+          value={this.state.message}
+        />
       </form>
     )
   }
