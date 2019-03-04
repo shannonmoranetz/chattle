@@ -3,7 +3,6 @@ import Header from '../../components/Header/Header';
 import ChatBox from '../ChatBox/ChatBox';
 
 export class App extends Component {
-
   render() {
     return (
       <div className="App">

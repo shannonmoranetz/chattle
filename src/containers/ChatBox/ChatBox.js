@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
 import { tokenProvider } from '../../utils/tokenProvider';
-import { connect } from 'react-redux';
-import MessageList from '../../components/MessageList/MessageList';
-import RoomList from '../../components/RoomList/RoomList';
-import SendMessageForm from '../SendMessageForm/SendMessageForm';
-import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
+import MessageList from '../../containers/MessageList/MessageList';
+import RoomList from '../../containers/RoomList/RoomList';
+import SendMessageForm from '../../components/SendMessageForm/SendMessageForm';
 import UserForm from '../UserForm/UserForm';
 
 export class ChatBox extends Component {
-
   componentDidMount = () => {
     this.loginUser();
   }
@@ -99,8 +98,6 @@ export class ChatBox extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  messages: state.messages,
-  rooms: state.rooms,
   currentRoomId: state.currentRoomId,
   currentUser: state.currentUser
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewRoomForm from '../../containers/NewRoomForm/NewRoomForm';
+import NewRoomForm from '../../components/NewRoomForm/NewRoomForm';
 
 export class RoomList extends Component {
   constructor() {

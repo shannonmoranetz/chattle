@@ -2,9 +2,11 @@
 @import './variables.scss';
 @import './normalize.css';
 @import '../containers/App/App.scss';
+@import '../containers/ChatBox/ChatBox.scss';
 @import '../components/Header/Header.scss';
 @import '../components/Message/Message.scss';
-@import '../components/MessageList/MessageList.scss';
-@import '../components/RoomList/RoomList.scss';
-@import '../containers/NewRoomForm/NewRoomForm.scss';
-@import '../containers/SendMessageForm/SendMessageForm.scss';
+@import '../containers/MessageList/MessageList.scss';
+@import '../components/NewRoomForm/NewRoomForm.scss';
+@import '../containers/RoomList/RoomList.scss';
+@import '../components/SendMessageForm/SendMessageForm.scss';
+@import '../containers/UserForm/UserForm.scss';
