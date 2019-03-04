@@ -10,12 +10,6 @@ import UserForm from '../UserForm/UserForm';
 import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUsername: ''
-    }
-  }
 
   componentDidMount = () => {
     this.initializeChat();
@@ -75,22 +69,6 @@ export class App extends Component {
     } catch (error) {
       console.log('Error on creating room: ', error)
     }
-  }
-
-  onUsernameSubmitted = (username) => {
-    fetch('https://shannon-secret-auth.herokuapp.com/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username }),
-    })
-      .then(response => {
-        this.setState({
-          currentUsername: username
-        })
-      })
-      .catch(error => console.error('error', error))
   }
 
   render() {

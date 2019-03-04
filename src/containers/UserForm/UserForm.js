@@ -8,9 +8,21 @@ class UserForm extends Component {
     }
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
+    let { username } = this.state;
     event.preventDefault();
-    this.props.onUsernameSubmitted(this.state.username);
+    try {
+      await fetch('https://shannon-secret-auth.herokuapp.com/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
+      })
+      this.setState({ currentUsername: username })
+    } catch (error) {
+      console.log('Error on user: ', error)
+    }
   }
 
   onChange = (event) => {
