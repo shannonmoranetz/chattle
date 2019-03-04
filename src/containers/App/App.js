@@ -11,7 +11,7 @@ import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../a
 
 export class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       currentUsername: ''
     }
@@ -78,7 +78,7 @@ export class App extends Component {
   }
 
   onUsernameSubmitted = (username) => {
-    fetch('http://localhost:3001/users', {
+    fetch('https://shannon-secret-auth.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
