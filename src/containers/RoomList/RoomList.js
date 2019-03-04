@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateCurrentRoom } from '../../actions';
-import NewRoomForm from '../../components/NewRoomForm/NewRoomForm';
+import NewRoomForm from '../NewRoomForm/NewRoomForm';
 
 export class RoomList extends Component {
   constructor() {
