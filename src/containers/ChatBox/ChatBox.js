@@ -44,6 +44,7 @@ export class ChatBox extends Component {
       this.props.resetMessages();
       let room = await this.currentUser.subscribeToRoom({
         roomId,
+        messageLimit: 80,
         hooks: {
           onMessage: message => {
             this.props.addMessage(message)
