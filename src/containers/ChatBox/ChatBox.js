@@ -25,7 +25,6 @@ export class ChatBox extends Component {
       this.currentUser = currentUser;
       this.getRooms();
     } catch (error) {
-      console.log(error)
       this.props.setError(`Error on connecting: ${error.info.error_description}`);
     }
   }
