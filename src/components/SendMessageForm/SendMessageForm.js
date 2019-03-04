@@ -8,6 +8,18 @@ export class SendMessageForm extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    this.inputRef.focus();
+  }
+
+  handleRef = (current) => {
+    this.inputRef = current;
+  }
+
+  focus = () => {
+    this.inputRef.focus();
+  }
+
   handleChange = (event) => {
     this.setState({ message: event.target.value });
   }
@@ -25,6 +37,8 @@ export class SendMessageForm extends Component {
           placeholder="message"
           type="text"
           value={this.state.message}
+          ref={this.handleRef}
+          autoFocus
         />
       </form>
     )
