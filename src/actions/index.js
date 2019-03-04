@@ -22,3 +22,8 @@ export const updateCurrentUser = username => ({
   type: 'UPDATE_USER',
   username
 });
+
+export const setLoading = isLoading => ({ 
+  type: 'SET_LOADING',
+  isLoading
+});
