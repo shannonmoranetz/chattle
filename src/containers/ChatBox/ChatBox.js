@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
+import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
 import { tokenProvider } from '../../utils/tokenProvider';
 import MessageList from '../../containers/MessageList/MessageList';
@@ -103,7 +103,8 @@ export const mapDispatchToProps = (dispatch) => ({
   resetMessages: (messages) => dispatch(resetMessages(messages)),
   addMessage: (message) => dispatch(addMessage(message)),
   sortRooms: (rooms) => dispatch(sortRooms(rooms)),
-  updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId))
+  updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId)),
+  setError: (error) => dispatch(setError(error))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);

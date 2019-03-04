@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setError } from '../../actions';
 
 export class NewRoomForm extends Component {
   constructor() {
@@ -29,7 +30,7 @@ export class NewRoomForm extends Component {
       this.moveBack();
     } catch (error) {
       this.setState({ duplicateSubmitted: true })
-      console.log('Error: ', error)
+      this.props.setError(`${error}`)
     }
   }
 
@@ -61,4 +62,8 @@ export const mapStateToProps = (state) => ({
   rooms: state.rooms
 })
 
-export default connect(mapStateToProps)(NewRoomForm);
+export const mapDispatchToProps = (dispatch) => ({
+  setError: (error) => dispatch(setError(error))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm);

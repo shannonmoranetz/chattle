@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateCurrentUser } from '../../actions';
+import { updateCurrentUser, setError } from '../../actions';
 
 class UserForm extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class UserForm extends Component {
       await this.props.updateCurrentUser(username);
       this.props.loginUser();
     } catch (error) {
-      console.log('Error on user: ', error)
+      this.props.setError(`${error}`);
     }
   }
 
@@ -52,7 +52,8 @@ class UserForm extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  updateCurrentUser: (username) => dispatch(updateCurrentUser(username))
+  updateCurrentUser: (username) => dispatch(updateCurrentUser(username)),
+  setError: (error) => dispatch(setError(error))
 })
 
 export default connect(null, mapDispatchToProps)(UserForm);
