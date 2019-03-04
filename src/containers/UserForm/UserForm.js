@@ -21,7 +21,8 @@ class UserForm extends Component {
         },
         body: JSON.stringify({ username })
       })
-      this.props.updateCurrentUser(username);
+      await this.props.updateCurrentUser(username);
+      this.props.loginUser();
     } catch (error) {
       console.log('Error on user: ', error)
     }

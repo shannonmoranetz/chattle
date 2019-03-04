@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { chatManager } from '../../index';
+import Chatkit from '@pusher/chatkit-client';
 import { connect } from 'react-redux';
 import MessageList from '../../components/MessageList/MessageList';
 import RoomList from '../../components/RoomList/RoomList';
@@ -10,10 +10,23 @@ import UserForm from '../UserForm/UserForm';
 export class ChatBox extends Component {
 
   componentDidMount = () => {
+    this.loginUser();
+  }
+
+  loginUser = () => {
     this.initializeChat();
   }
 
   initializeChat = async () => {
+    //move token/both to helper? 
+    const tokenProvider = new Chatkit.TokenProvider({
+      url: "https://shannon-secret-auth.herokuapp.com/auth"
+    });
+    const chatManager = new Chatkit.ChatManager({
+      instanceLocator: "v1:us1:246b3612-b77d-450d-824f-85cf24e32654",
+      userId: this.props.currentUser,
+      tokenProvider: tokenProvider
+    });
     try {
       let currentUser = await chatManager.connect();
       this.currentUser = currentUser;
@@ -73,7 +86,7 @@ export class ChatBox extends Component {
     return (
       <div className="ChatBox">
         {!this.props.currentUser ? (
-          <UserForm />
+          <UserForm loginUser={this.loginUser} />
         ) : (
             <div className="chat-components">
               <RoomList subscribeToRoom={this.subscribeToRoom}
