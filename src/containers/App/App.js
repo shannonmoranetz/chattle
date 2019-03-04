@@ -75,7 +75,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        <UserForm onUsernameSubmitted={this.onUsernameSubmitted} />
+        <UserForm />
         <RoomList subscribeToRoom={this.subscribeToRoom} />
         <NewRoomForm createRoom={this.createRoom} />
         <MessageList />

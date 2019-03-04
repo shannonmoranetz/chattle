@@ -16,4 +16,9 @@ export const sortRooms = rooms => ({
 export const updateCurrentRoom = roomId => ({
   type: 'UPDATE_ROOM',
   roomId
-})
+});
+
+export const updateCurrentUser = username => ({
+  type: 'UPDATE_USER',
+  username
+});

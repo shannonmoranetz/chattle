@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateCurrentUser } from '../../actions';
 
 class UserForm extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class UserForm extends Component {
         },
         body: JSON.stringify({ username })
       })
-      this.setState({ currentUsername: username })
+      this.props.updateCurrentUser(username);
     } catch (error) {
       console.log('Error on user: ', error)
     }
@@ -48,4 +50,12 @@ class UserForm extends Component {
   }
 }
 
-export default UserForm;
+export const mapStateToProps = (state) => ({
+  currentUser: state.currentUser
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  updateCurrentUser: (username) => dispatch(updateCurrentUser(username))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
