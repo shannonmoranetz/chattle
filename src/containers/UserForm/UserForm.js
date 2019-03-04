@@ -29,7 +29,7 @@ class UserForm extends Component {
   }
 
   onChange = (event) => {
-    this.setState({ username: event.target.value });
+    this.setState({ username: event.target.value.toLowerCase() });
   }
 
   render() {

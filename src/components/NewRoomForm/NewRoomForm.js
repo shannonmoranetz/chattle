@@ -16,7 +16,7 @@ export class NewRoomForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.createRoom(this.state.roomName)
+    this.props.createRoom(this.state.roomName.toLowerCase())
     this.setState({ roomName: '' })
   }
 
