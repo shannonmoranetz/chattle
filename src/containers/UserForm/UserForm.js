@@ -50,12 +50,8 @@ class UserForm extends Component {
   }
 }
 
-export const mapStateToProps = (state) => ({
-  currentUser: state.currentUser
-})
-
 export const mapDispatchToProps = (dispatch) => ({
   updateCurrentUser: (username) => dispatch(updateCurrentUser(username))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export default connect(null, mapDispatchToProps)(UserForm);

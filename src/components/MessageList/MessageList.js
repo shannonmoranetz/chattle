@@ -20,7 +20,7 @@ export class MessageList extends Component {
     return (
       <div className="MessageList">
         {!this.props.currentRoomId ? (
-          <div className="join-room">join a room...</div>
+          <div className="join-room">join a room to see messages...</div>
         ) : (
             <div className="messages">
               {this.props.messages.map((message, i) => {
