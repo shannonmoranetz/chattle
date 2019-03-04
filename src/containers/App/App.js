@@ -6,7 +6,7 @@ import MessageList from '../../components/MessageList/MessageList';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import RoomList from '../../components/RoomList/RoomList';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
-import SignUpForm from '../SignUpForm/SignUpForm';
+import UserForm from '../UserForm/UserForm';
 import { resetMessages, addMessage, sortRooms, updateCurrentRoom } from '../../actions';
 
 export class App extends Component {
@@ -97,7 +97,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        <SignUpForm onUsernameSubmitted={this.onUsernameSubmitted} />
+        <UserForm onUsernameSubmitted={this.onUsernameSubmitted} />
         <RoomList subscribeToRoom={this.subscribeToRoom} />
         <NewRoomForm createRoom={this.createRoom} />
         <MessageList />

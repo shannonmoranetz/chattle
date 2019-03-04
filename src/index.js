@@ -12,6 +12,8 @@ import Chatkit from '@pusher/chatkit-client';
 
 const devTools = composeWithDevTools();
 const store = createStore(rootReducer, devTools);
+
+// move us to a component so you can ref state for userId
 const tokenProvider = new Chatkit.TokenProvider({
   url: "https://shannon-secret-auth.herokuapp.com/auth"
 });
