@@ -14,7 +14,7 @@ class UserForm extends Component {
     let { username } = this.state;
     event.preventDefault();
     try {
-      await fetch('https://shannon-secret-auth.herokuapp.com/', {
+      await fetch('https://shannon-secret-auth.herokuapp.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
