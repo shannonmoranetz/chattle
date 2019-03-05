@@ -5,8 +5,8 @@ import { updateCurrentUser, setError } from '../../actions';
 import { avatars } from './avatars';
 
 class UserForm extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       username: '',
       avatar: ''
@@ -68,6 +68,7 @@ class UserForm extends Component {
           </form>
           <div className="avatars">
             <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama'/>
+            <img src={avatars.pig} onClick={() => this.selectAvatar(avatars.pig)} alt='pig'/>
           </div>
         </div>
       </div>
