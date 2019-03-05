@@ -84,6 +84,7 @@ export class ChatBox extends Component {
           <Route path='/login' render={() => <UserForm loginUser={this.loginUser}/>}/>
         ) : (
             <div className="chat-components">
+              <div onClick={() => window.location.reload()}>logout</div>
               <RoomList subscribeToRoom={this.subscribeToRoom}
                 createRoom={this.createRoom} />
               <MessageList />
