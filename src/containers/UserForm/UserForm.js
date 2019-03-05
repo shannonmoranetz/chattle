@@ -31,7 +31,7 @@ class UserForm extends Component {
     let { updateCurrentUser, loginUser, history, setError } = this.props;
     event.preventDefault();
     try {
-      await fetch('https://shannon-secret-auth.herokuapp.com/users', {
+      await fetch('https://chattle-auth.herokuapp.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
