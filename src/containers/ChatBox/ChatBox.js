@@ -56,7 +56,7 @@ export class ChatBox extends Component {
           }
         }
       })
-      updateCurrentRoom(room.id)
+      updateCurrentRoom(room.id);
       this.getRooms();
     } catch (error) {
       setError(`Error on room subscription: ${error.info.error_description}`);
