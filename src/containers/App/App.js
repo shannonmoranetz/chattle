@@ -9,8 +9,8 @@ import Loader from '../../components/Loader/Loader';
 export class App extends Component {
 
   componentDidMount = () => {
-    this.props.setLoading(false);
     this.props.history.push('/login');
+    this.props.setLoading(false);
   }
 
   render() {

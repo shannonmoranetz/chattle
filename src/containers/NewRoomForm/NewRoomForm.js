@@ -16,7 +16,7 @@ export class NewRoomForm extends Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const name = this.state.roomName.toLowerCase();
     try {
       this.setState({ duplicateSubmitted: false })
@@ -34,7 +34,6 @@ export class NewRoomForm extends Component {
     }
   }
 
-  // router may deprecate this
   moveBack = () => {
     this.props.updateDisplay();
   }
@@ -51,8 +50,8 @@ export class NewRoomForm extends Component {
             placeholder="new room"
             required
           />
-          <button id="create-room" type="submit">+</button>
         </form>
+        <div onClick={this.moveBack}>back</div>
       </div>
     )
   }

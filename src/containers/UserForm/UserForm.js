@@ -45,7 +45,6 @@ class UserForm extends Component {
               placeholder="username"
               onChange={this.onChange}
             />
-            <input type="submit" />
           </form>
         </div>
       </div>
