@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateCurrentUser, setError } from '../../actions';
 
@@ -22,9 +23,10 @@ class UserForm extends Component {
         body: JSON.stringify({ username })
       })
       await this.props.updateCurrentUser(username);
-      this.props.loginUser();
+      await this.props.loginUser();
+      this.props.history.push('/');
     } catch (error) {
-      this.props.setError(`${error.info.error_description}`);
+      this.props.setError(`${error}`);
     }
   }
 
@@ -56,4 +58,4 @@ export const mapDispatchToProps = (dispatch) => ({
   setError: (error) => dispatch(setError(error))
 })
 
-export default connect(null, mapDispatchToProps)(UserForm);
+export default withRouter(connect(null, mapDispatchToProps)(UserForm));

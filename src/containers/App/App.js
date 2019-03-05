@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setLoading } from '../../actions';
 import ChatBox from '../ChatBox/ChatBox';
@@ -9,17 +10,18 @@ export class App extends Component {
 
   componentDidMount = () => {
     this.props.setLoading(false);
+    this.props.history.push('/login');
   }
 
   render() {
     return (
       <div className="App">
+        <Header />
         {this.props.isLoading ? (
           <Loader />
         ) : (
             <div className="app-items">
-              <Header />
-              <ChatBox />
+              <Route path='/' component={ChatBox} />
             </div>
           )}
       </div>
@@ -35,4 +37,4 @@ export const mapDispatchToProps = (dispatch) => ({
   setLoading: (isLoading) => dispatch(setLoading(isLoading))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

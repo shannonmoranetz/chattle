@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
@@ -80,7 +81,7 @@ export class ChatBox extends Component {
     return (
       <div className="ChatBox">
         {!this.props.currentUser ? (
-          <UserForm loginUser={this.loginUser} />
+          <Route path='/login' render={() => <UserForm loginUser={this.loginUser}/>}/>
         ) : (
             <div className="chat-components">
               <RoomList subscribeToRoom={this.subscribeToRoom}
