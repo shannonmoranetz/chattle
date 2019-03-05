@@ -13,11 +13,23 @@ class UserForm extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    this.inputRef.focus();
+  }
+
+  handleRef = (current) => {
+    this.inputRef = current;
+  }
+
+  focus = () => {
+    this.inputRef.focus();
+  }
+
   onSubmit = async (event) => {
     event.preventDefault();
     let { username, avatar } = this.state;
     try {
-      await fetch('http://localhost:3001/users', {
+      await fetch('https://shannon-secret-auth.herokuapp.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -50,9 +62,10 @@ class UserForm extends Component {
               type="text"
               placeholder="username"
               onChange={this.onChange}
+              ref={this.handleRef}
+              autoFocus
             />
           </form>
-          <input type="submit" />
           <div className="avatars">
             <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama'/>
           </div>
