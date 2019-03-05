@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError } from '../../actions';
+import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError, setAvatar } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
 import { tokenProvider } from '../../utils/tokenProvider';
 import MessageList from '../../containers/MessageList/MessageList';
@@ -24,6 +24,7 @@ export class ChatBox extends Component {
     try {
       let currentUser = await chatManager.connect();
       this.currentUser = currentUser;
+      this.props.setAvatar(currentUser.avatarURL);
       this.getRooms();
     } catch (error) {
       this.props.setError(`Error on connecting: ${error.info.error_description}`);
@@ -91,6 +92,7 @@ export class ChatBox extends Component {
             </div>
           )}
         {this.props.currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
+        <img src={this.props.avatar}/>
       </div>
     )
   }
@@ -99,7 +101,8 @@ export class ChatBox extends Component {
 export const mapStateToProps = (state) => ({
   currentRoomId: state.currentRoomId,
   currentUser: state.currentUser,
-  rooms: state.rooms
+  rooms: state.rooms,
+  avatar: state.avatar
 })
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -107,7 +110,8 @@ export const mapDispatchToProps = (dispatch) => ({
   addMessage: (message) => dispatch(addMessage(message)),
   sortRooms: (rooms) => dispatch(sortRooms(rooms)),
   updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId)),
-  setError: (error) => dispatch(setError(error))
+  setError: (error) => dispatch(setError(error)),
+  setAvatar: (avatar) => dispatch(setAvatar(avatar))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);

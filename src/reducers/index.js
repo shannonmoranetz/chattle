@@ -5,6 +5,7 @@ import { currentRoomReducer } from './currentRoomReducer';
 import { currentUserReducer } from './currentUserReducer';
 import { isLoadingReducer } from './isLoadingReducer';
 import { errorReducer } from './errorReducer';
+import { avatarReducer } from './avatarReducer';
 
 const rootReducer = combineReducers({
   messages: messagesReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   currentRoomId: currentRoomReducer,
   currentUser: currentUserReducer,
   isLoading: isLoadingReducer,
-  error: errorReducer
+  error: errorReducer,
+  avatar: avatarReducer
 });
 
 export default rootReducer;

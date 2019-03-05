@@ -23,6 +23,11 @@ export const updateCurrentUser = username => ({
   username
 });
 
+export const setAvatar = avatar => ({ 
+  type: 'SET_AVATAR',
+  avatar
+});
+
 export const setLoading = isLoading => ({ 
   type: 'SET_LOADING',
   isLoading
