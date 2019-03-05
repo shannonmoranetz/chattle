@@ -8,6 +8,7 @@ import MessageList from '../../containers/MessageList/MessageList';
 import RoomList from '../../containers/RoomList/RoomList';
 import SendMessageForm from '../../components/SendMessageForm/SendMessageForm';
 import UserForm from '../UserForm/UserForm';
+import PropTypes from 'prop-types';
 
 export class ChatBox extends Component {
 
@@ -115,3 +116,19 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);
+
+ChatBox.propTypes = {
+  match: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object,
+  addMessage: PropTypes.func,
+  setAvatar: PropTypes.func,
+  setError: PropTypes.func,
+  sortRooms: PropTypes.func,
+  updateCurrentRoom: PropTypes.func,
+  resetMessages: PropTypes.func,
+  rooms: PropTypes.array,
+  currentRoomId: PropTypes.string,
+  avatar: PropTypes.string,
+  currentUser: PropTypes.string
+}

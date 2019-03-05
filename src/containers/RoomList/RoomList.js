@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateCurrentRoom } from '../../actions';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
+import PropTypes from 'prop-types';
 
 export class RoomList extends Component {
   constructor() {
@@ -53,3 +54,12 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomList);
+
+RoomList.propTypes = {
+  createRoom: PropTypes.func,
+  currentRoomId: PropTypes.string,
+  rooms: PropTypes.array,
+  updateCurrentRoom: PropTypes.func,
+  subscribeToRoom: PropTypes.func
+}
+

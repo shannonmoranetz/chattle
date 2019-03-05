@@ -5,6 +5,7 @@ import { setLoading } from '../../actions';
 import ChatBox from '../ChatBox/ChatBox';
 import Header from '../../components/Header/Header';
 import Loader from '../../components/Loader/Loader';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
 
@@ -38,3 +39,11 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+
+App.propTypes = {
+  match: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object,
+  setLoading: PropTypes.func,
+  isLoading: PropTypes.bool
+}

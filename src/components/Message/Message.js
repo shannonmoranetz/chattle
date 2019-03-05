@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Message = (props) => {
   return (
@@ -10,3 +11,8 @@ export const Message = (props) => {
 }
 
 export default Message;
+
+Message.propTypes = {
+  username: PropTypes.string,
+  text: PropTypes.string
+}

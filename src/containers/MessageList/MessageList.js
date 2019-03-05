@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Message from '../../components/Message/Message';
+import PropTypes from 'prop-types';
 
 export class MessageList extends Component {
 
@@ -43,3 +44,9 @@ export const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(MessageList);
+
+MessageList.propTypes = {
+  currentRoomId: PropTypes.string,
+  currentUser: PropTypes.string,
+  messages: PropTypes.array
+}

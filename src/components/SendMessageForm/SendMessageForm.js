@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class SendMessageForm extends Component {
   constructor() {
@@ -46,3 +47,7 @@ export class SendMessageForm extends Component {
 }
 
 export default SendMessageForm;
+
+SendMessageForm.propTypes = {
+  sendMessage: PropTypes.func
+}

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateCurrentUser, setError } from '../../actions';
 import { avatars } from './avatars';
+import PropTypes from 'prop-types';
 
 class UserForm extends Component {
   constructor() {
@@ -82,3 +83,12 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withRouter(connect(null, mapDispatchToProps)(UserForm));
+
+UserForm.propTypes = {
+  match: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object,
+  loginUser: PropTypes.func,
+  setError: PropTypes.func,
+  updateCurrentUser: PropTypes.func
+}
