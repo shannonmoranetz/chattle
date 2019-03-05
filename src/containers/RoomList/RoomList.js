@@ -18,20 +18,21 @@ export class RoomList extends Component {
   }
 
   render() {
+    let { createRoom, rooms, currentRoomId, subscribeToRoom } = this.props;
     return (
       <div className="RoomList">
         <h3>rooms:</h3>
         {this.state.showNewRoomForm ? (
-          <NewRoomForm  createRoom={this.props.createRoom}
-                        updateDisplay={this.handleClick} />
+          <NewRoomForm createRoom={createRoom}
+            updateDisplay={this.handleClick} />
         ) : (
             <div className="room-items">
               <ul>
-                {this.props.rooms.map(room => {
-                  const active = this.props.currentRoomId === room.id ? '-active' : '';
+                {rooms.map(room => {
+                  const active = currentRoomId === room.id ? '-active' : '';
                   return (
                     <li key={room.id} className={'room' + active}>
-                      <div href="#" onClick={() => this.props.subscribeToRoom(room.id)}># {room.name}</div>
+                      <div href="#" onClick={() => subscribeToRoom(room.id)}># {room.name}</div>
                     </li>
                   )
                 })}
@@ -62,4 +63,3 @@ RoomList.propTypes = {
   updateCurrentRoom: PropTypes.func,
   subscribeToRoom: PropTypes.func
 }
-

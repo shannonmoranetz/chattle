@@ -10,8 +10,9 @@ import PropTypes from 'prop-types';
 export class App extends Component {
 
   componentDidMount = () => {
-    this.props.history.push('/login');
-    this.props.setLoading(false);
+    let { history, setLoading } = this.props;
+    history.push('/login');
+    setLoading(false);
   }
 
   render() {

@@ -17,21 +17,23 @@ export class NewRoomForm extends Component {
   }
 
   handleSubmit = (event) => {
+    let { roomName } = this.state;
+    let { rooms, createRoom, setError } = this.props;
     event.preventDefault();
-    const name = this.state.roomName.toLowerCase();
+    const name = roomName.toLowerCase();
     try {
       this.setState({ duplicateSubmitted: false })
-      this.props.rooms.forEach((room) => {
+      rooms.forEach((room) => {
         if (room.name.includes(name)) {
           throw new Error('room already exists');
         }
       })
-      this.props.createRoom(this.state.roomName.toLowerCase())
+      createRoom(roomName.toLowerCase())
       this.setState({ roomName: '' })
       this.moveBack();
     } catch (error) {
       this.setState({ duplicateSubmitted: true })
-      this.props.setError(`${error}`)
+      setError(`${error}`)
     }
   }
 
@@ -43,7 +45,7 @@ export class NewRoomForm extends Component {
     const { roomName, duplicateSubmitted } = this.state;
     return (
       <div className="NewRoomForm">
-        { duplicateSubmitted && <p>room already exists</p> }
+        {duplicateSubmitted && <p>room already exists</p>}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange}
             type="text"

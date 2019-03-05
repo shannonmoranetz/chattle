@@ -27,8 +27,9 @@ class UserForm extends Component {
   }
 
   onSubmit = async (event) => {
-    event.preventDefault();
     let { username, avatar } = this.state;
+    let { updateCurrentUser, loginUser, history, setError } = this.props;
+    event.preventDefault();
     try {
       await fetch('https://shannon-secret-auth.herokuapp.com/users', {
         method: 'POST',
@@ -37,11 +38,11 @@ class UserForm extends Component {
         },
         body: JSON.stringify({ username, avatar })
       })
-        this.props.updateCurrentUser(username);
-        this.props.loginUser();
-        this.props.history.push('/');
+      updateCurrentUser(username);
+      loginUser();
+      history.push('/');
     } catch (error) {
-      this.props.setError(`${error}`);
+      setError(`${error}`);
     }
   }
 
@@ -68,8 +69,8 @@ class UserForm extends Component {
             />
           </form>
           <div className="avatars">
-            <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama'/>
-            <img src={avatars.pig} onClick={() => this.selectAvatar(avatars.pig)} alt='pig'/>
+            <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama' />
+            <img src={avatars.pig} onClick={() => this.selectAvatar(avatars.pig)} alt='pig' />
           </div>
         </div>
       </div>

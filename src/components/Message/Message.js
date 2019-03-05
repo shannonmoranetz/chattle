@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Message = (props) => {
+export const Message = ({ username, text }) => {
   return (
     <div className="Message">
-      <div className="message-username">{props.username}</div>
-      <div className="message-text">{props.text}</div>
+      <div className="message-username">{username}</div>
+      <div className="message-text">{text}</div>
     </div>
   )
 }

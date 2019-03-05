@@ -18,14 +18,15 @@ export class MessageList extends Component {
   }
 
   render() {
+    let { currentUser, currentRoomId, messages } = this.props;
     return (
       <div className="MessageList">
-      <p className="user-greeting">hello, {this.props.currentUser}</p>
-        {!this.props.currentRoomId ? (
+        <p className="user-greeting">hello, {currentUser}</p>
+        {!currentRoomId ? (
           <div className="join-room">join a room to see messages...</div>
         ) : (
             <div className="messages">
-              {this.props.messages.map((message, i) => {
+              {messages.map((message, i) => {
                 return (
                   <Message key={i} username={message.senderId} text={message.text} />
                 )

@@ -33,31 +33,33 @@ export class ChatBox extends Component {
   }
 
   getRooms = async () => {
+    let { sortRooms, setError } = this.props;
     try {
       let joinableRooms = await this.currentUser.getJoinableRooms()
       const rooms = [...joinableRooms, ...this.currentUser.rooms]
-      this.props.sortRooms(rooms);
+      sortRooms(rooms);
     } catch (error) {
-      this.props.setError(`Error on room fetch: ${error.info.error_description}`);
+      setError(`Error on room fetch: ${error.info.error_description}`);
     }
   }
 
   subscribeToRoom = async (roomId) => {
+    let { resetMessages, addMessage, updateCurrentRoom, setError } = this.props;
     try {
-      this.props.resetMessages();
+      resetMessages();
       let room = await this.currentUser.subscribeToRoom({
         roomId,
         messageLimit: 80,
         hooks: {
           onMessage: message => {
-            this.props.addMessage(message)
+            addMessage(message)
           }
         }
       })
-      this.props.updateCurrentRoom(room.id)
+      updateCurrentRoom(room.id)
       this.getRooms();
     } catch (error) {
-      this.props.setError(`Error on room subscription: ${error.info.error_description}`);
+      setError(`Error on room subscription: ${error.info.error_description}`);
     }
   }
 
@@ -80,10 +82,11 @@ export class ChatBox extends Component {
   }
 
   render() {
+    let { currentUser, currentRoomId, avatar } = this.props;
     return (
       <div className="ChatBox">
-        {!this.props.currentUser ? (
-          <Route path='/login' render={() => <UserForm loginUser={this.loginUser}/>}/>
+        {!currentUser ? (
+          <Route path='/login' render={() => <UserForm loginUser={this.loginUser} />} />
         ) : (
             <div className="chat-components">
               <div onClick={() => window.location.reload()}>logout</div>
@@ -92,8 +95,8 @@ export class ChatBox extends Component {
               <MessageList />
             </div>
           )}
-        {this.props.currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-        <img src={this.props.avatar}/>
+        {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
+        <img src={avatar} />
       </div>
     )
   }
