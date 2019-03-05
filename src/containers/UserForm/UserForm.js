@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateCurrentUser, setError } from '../../actions';
+import {avatars} from './avatars';
 
 class UserForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: ''
+      username: '',
+      avatar: ''
     }
   }
 
   onSubmit = async (event) => {
-    let { username } = this.state;
+    let { username, avatar } = this.state;
     event.preventDefault();
     try {
       await fetch('https://shannon-secret-auth.herokuapp.com/users', {
@@ -20,9 +22,10 @@ class UserForm extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({ username, avatar })
       })
       await this.props.updateCurrentUser(username);
+      // SAVE AVATAR TO STORE
       await this.props.loginUser();
       this.props.history.push('/');
     } catch (error) {
@@ -34,10 +37,14 @@ class UserForm extends Component {
     this.setState({ username: event.target.value.toLowerCase() });
   }
 
+  selectAvatar = (imagePath) => {
+    this.setState({ avatar: imagePath })
+  }
+
   render() {
     return (
-      <div>
-        <div>
+      <div className="UserForm">
+        <div className="form-items">
           <h3>enter username:</h3>
           <form onSubmit={this.onSubmit}>
             <input
@@ -46,6 +53,9 @@ class UserForm extends Component {
               onChange={this.onChange}
             />
           </form>
+          <div className="avatars">
+            <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama'/>
+          </div>
         </div>
       </div>
     )
