@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { updateCurrentUser, setError } from '../../actions';
 import { avatars } from './avatars';
 import PropTypes from 'prop-types';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
+const styles = {
+  bigAvatar: {
+    margin: 10,
+    width: 200,
+    height: 200
+  }
+};
 
 class UserForm extends Component {
   constructor() {
@@ -55,6 +67,7 @@ class UserForm extends Component {
   }
 
   render() {
+    let { classes } = this.props;
     return (
       <div className="UserForm">
         <div className="form-items">
@@ -68,14 +81,18 @@ class UserForm extends Component {
               autoFocus
             />
           </form>
-          <div className="avatar-select">
+          <Grid container justify="center" alignItems="center" item xs={10} spacing={12}>
             {avatars.filter((avatar) => {
               return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
             })
               .map((avatar, index) => {
-                return (<img src={avatar} className="avatar" key={index} onClick={() => this.selectAvatar(avatar)} alt='avatar' />)
+                return (
+                  <Grid item m={5}>
+                    <Avatar src={avatar} className={classes.bigAvatar} key={index} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+                  </Grid>
+                )
               })}
-          </div>
+          </Grid>
         </div>
       </div>
     )
@@ -87,7 +104,13 @@ export const mapDispatchToProps = (dispatch) => ({
   setError: (error) => dispatch(setError(error))
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(UserForm));
+// export default connect(null, mapDispatchToProps)withStyles(styles)(UserForm);
+
+export default compose(
+  withRouter,
+  withStyles(styles),
+  connect(null, mapDispatchToProps)
+)(UserForm);
 
 UserForm.propTypes = {
   match: PropTypes.object,

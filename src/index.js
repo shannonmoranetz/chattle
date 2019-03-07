@@ -8,14 +8,23 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const devTools = composeWithDevTools();
 const store = createStore(rootReducer, devTools);
 
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  }
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
     </BrowserRouter>
   </Provider>,
 document.getElementById('root'));
