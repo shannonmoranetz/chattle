@@ -8,12 +8,26 @@ import { avatars } from './avatars';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import FormControl from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   bigAvatar: {
     margin: 10,
     width: 200,
     height: 200
+  },
+  rightIcon: {
+    marginLeft: 10
+  },
+  button: {
+    width: 125
   }
 };
 
@@ -24,18 +38,6 @@ class UserForm extends Component {
       username: '',
       avatar: ''
     }
-  }
-
-  componentDidUpdate = () => {
-    this.inputRef.focus();
-  }
-
-  handleRef = (current) => {
-    this.inputRef = current;
-  }
-
-  focus = () => {
-    this.inputRef.focus();
   }
 
   onSubmit = async (event) => {
@@ -71,15 +73,21 @@ class UserForm extends Component {
     return (
       <div className="UserForm">
         <div className="form-items">
-          <h3>enter username:</h3>
           <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              placeholder="username"
-              onChange={this.onChange}
-              ref={this.handleRef}
-              autoFocus
-            />
+            <FormControl >
+              <InputLabel htmlFor="login-input">Log in</InputLabel>
+              <Input
+                id="login-input"
+                type="text"
+                placeholder="username"
+                onChange={this.onChange}
+                autoFocus
+              />
+              <Button variant="contained" color="primary" className={classes.button} onClick={this.onSubmit}>
+                log in
+                <Icon className={classes.rightIcon}>person_add</Icon>
+              </Button>
+            </FormControl>
           </form>
           <Grid container justify="center" max-width="100%" alignItems="center" item xs={12} spacing={32}>
             {avatars.filter((avatar) => {
