@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError, setAvatar } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
 import { tokenProvider } from '../../utils/tokenProvider';
@@ -9,6 +11,15 @@ import RoomList from '../../containers/RoomList/RoomList';
 import SendMessageForm from '../../components/SendMessageForm/SendMessageForm';
 import UserForm from '../UserForm/UserForm';
 import PropTypes from 'prop-types';
+import Avatar from '@material-ui/core/Avatar';
+
+const styles = {
+  avatar: {
+    margin: 10,
+    width: 120,
+    height: 120
+  }
+};
 
 export class ChatBox extends Component {
 
@@ -82,7 +93,7 @@ export class ChatBox extends Component {
   }
 
   render() {
-    let { currentUser, currentRoomId, avatar } = this.props;
+    let { currentUser, currentRoomId, avatar, classes } = this.props;
     return (
       <div className="ChatBox">
         {!currentUser ? (
@@ -96,7 +107,7 @@ export class ChatBox extends Component {
             </div>
           )}
         {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-        <img src={avatar} />
+        {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
       </div>
     )
   }
@@ -118,7 +129,10 @@ export const mapDispatchToProps = (dispatch) => ({
   setAvatar: (avatar) => dispatch(setAvatar(avatar))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(ChatBox);
 
 ChatBox.propTypes = {
   match: PropTypes.object,

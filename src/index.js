@@ -16,6 +16,7 @@ const store = createStore(rootReducer, devTools);
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
+    fontFamily: 'Sacramento'
   }
 })
 

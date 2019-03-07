@@ -81,14 +81,14 @@ class UserForm extends Component {
               autoFocus
             />
           </form>
-          <Grid container justify="center" alignItems="center" item xs={10} spacing={12}>
+          <Grid container justify="center" max-width="100%" alignItems="center" item xs={12} spacing={32}>
             {avatars.filter((avatar) => {
               return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
             })
               .map((avatar, index) => {
                 return (
-                  <Grid item m={5}>
-                    <Avatar src={avatar} className={classes.bigAvatar} key={index} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+                  <Grid item m={5} key={index}>
+                    <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
                   </Grid>
                 )
               })}
@@ -103,8 +103,6 @@ export const mapDispatchToProps = (dispatch) => ({
   updateCurrentUser: (username) => dispatch(updateCurrentUser(username)),
   setError: (error) => dispatch(setError(error))
 })
-
-// export default connect(null, mapDispatchToProps)withStyles(styles)(UserForm);
 
 export default compose(
   withRouter,
