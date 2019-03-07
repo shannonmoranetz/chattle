@@ -18,12 +18,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
-
 const styles = {
   bigAvatar: {
     margin: 10,
-    width: 180,
-    height: 180,
+    width: 170,
+    height: 170,
     '&:hover': {
       boxShadow: '8px 8px 10px black',
       cursor: 'pointer'
@@ -44,12 +43,7 @@ const styles = {
     marginTop: 15
   },
   divide: {
-    marginBottom: 25
-  },
-  hovbutt: {
-    '&:hover': {
-     border: '1px'
-    }
+    marginBottom: 15
   }
 };
 
@@ -130,7 +124,7 @@ class UserForm extends Component {
           })
             .map((avatar, index) => {
               return (
-                <Grid key={index}>
+                <Grid key={index} className={classes.divide} >
                   <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
                 </Grid>
               )
