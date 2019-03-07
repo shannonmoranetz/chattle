@@ -29,7 +29,6 @@ const drawerWidth = 200;
 
 const styles = theme => ({
   avatar: {
-    margin: 10,
     width: 120,
     height: 120,
     position: 'fixed',
@@ -43,12 +42,12 @@ const styles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    marginBottom: 4,
+    position: 'fixed',
+    width: 200
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    position: 'relative'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -56,11 +55,20 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   navTitle: {
     fontFamily: 'Sacramento',
-    marginTop: 4,
     fontSize: 40
   },
   drawerButton: {
-    marginBottom: 4,
+  },
+  innerBox: {
+    display: 'flex'
+  },
+  drawerList: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '80%',
+    position: 'fixed',
+    bottom: 0,
+    color: 'black'
   }
 });
 
@@ -163,27 +171,33 @@ export class ChatBox extends Component {
                     </Grid>
 
                   </Grid>
+                  <div className={classes.drawerList}>
+                  <RoomList subscribeToRoom={this.subscribeToRoom}
+                    createRoom={this.createRoom} />
+                  </div>
         {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
 
                 </Toolbar>
               </AppBar>
-          <div>
+
               <div className={classes.toolbar}>
+
                 <Drawer
                   className={classes.drawer}
                   variant="permanent"
                   classes={{ paper: classes.drawerPaper }}>
-                  <RoomList subscribeToRoom={this.subscribeToRoom}
-                    createRoom={this.createRoom} />
                 </Drawer>
               </div>
 
             </div>
-            </div>
+
 
           )}
-        {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-        {currentUser && <MessageList />}
+          <div className="innerBox">
+
+            {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
+            {currentUser && <MessageList />}
+          </div>
       </div>
     )
   }

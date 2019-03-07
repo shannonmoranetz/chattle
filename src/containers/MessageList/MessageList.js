@@ -9,7 +9,13 @@ import PropTypes from 'prop-types';
 const styles = {
   root: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    position: 'relative',
+    marginTop: 20,
+    marginRight: 40,
+    marginBottom: 80,
+    marginLeft: 40,
+    width: '100%'
   }
 }
 
