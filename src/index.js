@@ -17,6 +17,9 @@ const theme = createMuiTheme({
   typography: {
     useNextVariants: true
   },
+  root: {
+    display: 'flex'
+  },
 })
 
 ReactDOM.render(

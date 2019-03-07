@@ -12,14 +12,56 @@ import SendMessageForm from '../../components/SendMessageForm/SendMessageForm';
 import UserForm from '../UserForm/UserForm';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import { Hidden, CssBaseline } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer';
 
-const styles = {
+const drawerWidth = 200;
+
+const styles = theme => ({
   avatar: {
     margin: 10,
     width: 120,
-    height: 120
+    height: 120,
+  },
+  rightIcon: {
+    marginLeft: 10
+  },
+  root: {
+    display: 'flex'
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    marginBottom: 4,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    position: 'relative'
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  toolbar: theme.mixins.toolbar,
+  navTitle: {
+    fontFamily: 'Sacramento',
+    marginTop: 4,
+    fontSize: 40
+  },
+  drawerButton: {
+    marginBottom: 4,
+
   }
-};
+});
 
 export class ChatBox extends Component {
 
@@ -95,14 +137,39 @@ export class ChatBox extends Component {
   render() {
     let { currentUser, currentRoomId, avatar, classes } = this.props;
     return (
-      <div className="ChatBox">
+      <div className={classes.root}>
         {!currentUser ? (
           <Route path='/login' render={() => <UserForm loginUser={this.loginUser} />} />
         ) : (
-            <div className="chat-components">
-              <div onClick={() => window.location.reload()}>logout</div>
-              <RoomList subscribeToRoom={this.subscribeToRoom}
-                createRoom={this.createRoom} />
+            <div>
+              <AppBar position="relative" color="primary" className={classes.appBar}>
+                <Toolbar >
+                  <Grid container direction="column" alignItems="center" justify="center">
+                    <Grid item>
+
+                      <Typography className={classes.navTitle} variant="body1" align="center">chattle
+                      <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon-sm" alt="heart"></img></Typography>
+                    </Grid>
+
+                    <Grid item>
+                      <Button variant="contained" color="secondary" className={classes.drawerButton} onClick={() => window.location.reload()}>
+                        log out <Icon className={classes.rightIcon}>exit_to_app</Icon>
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Toolbar>
+              </AppBar>
+
+              <div className={classes.toolbar}>
+                <Drawer
+                  className={classes.drawer}
+                  variant="permanent"
+                  classes={{ paper: classes.drawerPaper }}>
+                  <RoomList subscribeToRoom={this.subscribeToRoom}
+                    createRoom={this.createRoom} />
+                </Drawer>
+              </div>
+
               <MessageList />
             </div>
           )}

@@ -18,7 +18,6 @@ const styles = {
   subtitle: {
     fontFamily: 'Sacramento',
     marginTop: 30,
-    fontSize: 30
   }
 };
 

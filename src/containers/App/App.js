@@ -8,11 +8,14 @@ import ChatBox from '../ChatBox/ChatBox';
 import Header from '../../components/Header/Header';
 import Loader from '../../components/Loader/Loader';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   stickToBottom: {
     width: '100%',
     position: 'fixed',
@@ -32,8 +35,7 @@ export class App extends Component {
   render() {
     let { classes } = this.props;
     return (
-      <div className="App">
-        <Header />
+      <div className={classes.root}>
         {this.props.isLoading ? (
           <Loader />
         ) : (

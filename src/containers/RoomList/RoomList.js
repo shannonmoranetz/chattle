@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { updateCurrentRoom } from '../../actions';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import PropTypes from 'prop-types';
+
+const styles = theme => ({
+content: {
+  flexGrow: 1,
+  paddingTop: theme.spacing.unit * 12,
+  paddingLeft: theme.spacing.unit * 2,
+  }
+})
 
 export class RoomList extends Component {
   constructor() {
@@ -18,15 +28,16 @@ export class RoomList extends Component {
   }
 
   render() {
-    let { createRoom, rooms, currentRoomId, subscribeToRoom } = this.props;
+    let { createRoom, rooms, currentRoomId, subscribeToRoom, classes } = this.props;
     return (
       <div className="RoomList">
-        <h3>rooms:</h3>
         {this.state.showNewRoomForm ? (
           <NewRoomForm createRoom={createRoom}
             updateDisplay={this.handleClick} />
         ) : (
-            <div className="room-items">
+            <div className={classes.content}>
+        <h3>rooms:</h3>
+
               <ul>
                 {rooms.map(room => {
                   const active = currentRoomId === room.id ? '-active' : '';
@@ -54,7 +65,10 @@ export const mapDispatchToProps = (dispatch) => ({
   updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomList);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(RoomList);
 
 RoomList.propTypes = {
   createRoom: PropTypes.func,

@@ -17,8 +17,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Header from '../../components/Header/Header';
+
 
 const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   bigAvatar: {
     margin: 10,
     width: 170,
@@ -87,9 +93,11 @@ class UserForm extends Component {
   render() {
     let { classes } = this.props;
     return (
-      <div className="UserForm">
-        <AppBar position="static" color="primary">
+      <div className={classes.root}>
+        
+        <AppBar position="relative" color="primary">
           <Toolbar >
+          <Header />
             <form onSubmit={this.onSubmit} className={classes.userForm}>
               <FormControl className={classes.userForm}>
                 <Grid justify="space-between" container spacing={24}>
