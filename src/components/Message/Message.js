@@ -14,11 +14,7 @@ const styles = {
   },
   root: {
     display: 'flex',
-    padding: 5,
-  },
-  column: {
-    display: 'flex',
-    flexDirection: 'column'
+    padding: 5
   },
   sender: {
     marginLeft: 46
@@ -26,6 +22,7 @@ const styles = {
 }
 
 export const Message = ({ message, classes, currentUser }) => {
+  console.log(message)
   return (
     <div className={classes.root}>
       { currentUser === message.senderId ? (

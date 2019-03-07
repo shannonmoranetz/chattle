@@ -38,7 +38,7 @@ const styles = theme => ({
     marginLeft: 10
   },
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -68,11 +68,24 @@ const styles = theme => ({
     height: '80%',
     position: 'fixed',
     bottom: 0,
-    color: 'black'
+    color: 'black',
+    marginLeft: 10
   }
 });
 
 export class ChatBox extends Component {
+
+  // scrollToBottom = () => {
+  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  // }
+  
+  // componentDidMount() {
+  //   this.scrollToBottom();
+  // }
+  
+  // componentDidUpdate() {
+  //   this.scrollToBottom();
+  // }
 
   loginUser = () => {
     this.initializeChat();
@@ -160,13 +173,13 @@ export class ChatBox extends Component {
                       <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon-sm" alt="heart"></img></Typography>
                     </Grid>
 
-                    <Grid item>
+                    <Grid item >
                       <Button variant="contained" color="secondary" className={classes.drawerButton} onClick={() => window.location.reload()}>
                         log out <Icon className={classes.rightIcon}>exit_to_app</Icon>
                       </Button>
                     </Grid>
 
-                    <Grid item>
+                    <Grid item >
                     <p className="user-greeting">hello, {currentUser}</p>
                     </Grid>
 
@@ -174,8 +187,8 @@ export class ChatBox extends Component {
                   <div className={classes.drawerList}>
                   <RoomList subscribeToRoom={this.subscribeToRoom}
                     createRoom={this.createRoom} />
-                  </div>
         {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+                  </div>
 
                 </Toolbar>
               </AppBar>
@@ -198,6 +211,9 @@ export class ChatBox extends Component {
             {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
             {currentUser && <MessageList />}
           </div>
+          {/* <div style={{ clear: "both" }}
+             ref={(el) => { this.messagesEnd = el; }}>
+        </div> */}
       </div>
     )
   }

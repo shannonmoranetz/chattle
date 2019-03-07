@@ -8,7 +8,6 @@ import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -19,13 +18,14 @@ const styles = theme => ({
     position: 'fixed',
     left: 200,
     bottom: 20,
-    border: '1px solid black',
+    borderTop: '1px solid #dedede',
+    borderLeft: '1px solid #dedede',
     zIndex: theme.zIndex.drawer + 2,
     backgroundColor: 'white'
   },
   userForm: {
     width: '90%',
-    paddingLeft: 5
+    // paddingLeft: 5
   },
   sendButton: {
     height: '100%',
@@ -60,7 +60,7 @@ export class SendMessageForm extends Component {
     return (
       <form className={classes.root} onSubmit={this.handleSubmit}>
         <FormControl className={classes.stickToBottom}>
-          <Grid justify="space-between" container className={classes.userForm} spacing={32}>
+          <Grid justify="space-between" container className={classes.userForm}>
             <Grid item xs={10} >
               <InputLabel htmlFor="message-input">message</InputLabel>
               <Input className={classes.userForm} onChange={this.handleChange}
@@ -75,11 +75,11 @@ export class SendMessageForm extends Component {
                 }}
               />
             </Grid>
-            <Grid item xs={2}>
+            {/* <Grid item xs={2}>
               <Button variant="contained" color="secondary" className={classes.sendButton}>
                 <Icon >send</Icon>
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </FormControl>
       </form>
