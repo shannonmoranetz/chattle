@@ -8,26 +8,48 @@ import { avatars } from './avatars';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+
 
 const styles = {
   bigAvatar: {
     margin: 10,
-    width: 200,
-    height: 200
+    width: 180,
+    height: 180,
+    '&:hover': {
+      boxShadow: '8px 8px 10px black',
+      cursor: 'pointer'
+     }
   },
   rightIcon: {
     marginLeft: 10
   },
-  button: {
-    width: 125
+  userForm: {
+    width: '100%',
+  },
+  login: {
+    height: '100%',
+    justify: 'center',
+    alignItems: 'center'
+  },
+  instruction: {
+    marginTop: 15
+  },
+  divide: {
+    marginBottom: 25
+  },
+  hovbutt: {
+    '&:hover': {
+     border: '1px'
+    }
   }
 };
 
@@ -72,36 +94,48 @@ class UserForm extends Component {
     let { classes } = this.props;
     return (
       <div className="UserForm">
-        <div className="form-items">
-          <form onSubmit={this.onSubmit}>
-            <FormControl >
-              <InputLabel htmlFor="login-input">Log in</InputLabel>
-              <Input
-                id="login-input"
-                type="text"
-                placeholder="username"
-                onChange={this.onChange}
-                autoFocus
-              />
-              <Button variant="contained" color="primary" className={classes.button} onClick={this.onSubmit}>
-                log in
-                <Icon className={classes.rightIcon}>person_add</Icon>
-              </Button>
-            </FormControl>
-          </form>
-          <Grid container justify="center" max-width="100%" alignItems="center" item xs={12} spacing={32}>
-            {avatars.filter((avatar) => {
-              return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
-            })
-              .map((avatar, index) => {
-                return (
-                  <Grid item m={5} key={index}>
-                    <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+        <AppBar position="static" color="primary">
+          <Toolbar >
+            <form onSubmit={this.onSubmit} className={classes.userForm}>
+              <FormControl className={classes.userForm}>
+                <Grid justify="space-between" container spacing={24}>
+                  <Grid item>
+                    <InputLabel htmlFor="login-input">Log in</InputLabel>
+                    <Input
+                      id="login-input"
+                      type="text"
+                      placeholder="username"
+                      onChange={this.onChange}
+                      autoFocus={true}
+                    />
                   </Grid>
-                )
-              })}
-          </Grid>
-        </div>
+                  <Grid item>
+                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>
+                      chat! <Icon className={classes.rightIcon}>person_add</Icon>
+                    </Button>
+                  </Grid>
+                </Grid>
+              </FormControl>
+            </form>
+          </Toolbar>
+        </AppBar>
+
+        <Typography variant="h5" gutterBottom align="center" className={classes.instruction}>
+          first visit? pick a chat avatar before logging in:
+        </Typography>
+        <Divider className={classes.divide} />
+        <Grid container justify="center" max-width="100%" alignItems="center" item spacing={24}>
+          {avatars.filter((avatar) => {
+            return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
+          })
+            .map((avatar, index) => {
+              return (
+                <Grid key={index}>
+                  <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+                </Grid>
+              )
+            })}
+        </Grid>
       </div>
     )
   }
