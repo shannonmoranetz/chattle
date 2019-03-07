@@ -10,16 +10,10 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column'
-  },
+  }
 }
 
 export class MessageList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      msgAvatar: ''
-    }
-  }
 
   getSnapshotBeforeUpdate = () => {
     const node = ReactDOM.findDOMNode(this);
@@ -33,7 +27,6 @@ export class MessageList extends Component {
   }
 
   render() {
-    // console.log(this.props)
     let { currentRoomId, messages, classes } = this.props;
     return (
       <div className={classes.root}>
@@ -43,7 +36,7 @@ export class MessageList extends Component {
             <div className="messages">
               {messages.map((message, i) => {
                 return (
-                  <Message key={i} username={message.senderId} text={message.text} msg={message} />
+                  <Message key={i} message={message} />
                 )
               })}
             </div>
@@ -55,9 +48,7 @@ export class MessageList extends Component {
 
 export const mapStateToProps = (state) => ({
   messages: state.messages,
-  currentRoomId: state.currentRoomId,
-  currentUser: state.currentUser,
-  rooms: state.rooms
+  currentRoomId: state.currentRoomId
 })
 
 export default compose(

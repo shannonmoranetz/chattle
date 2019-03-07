@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Message = ({ username, text, avatar, msg }) => {
-  console.log(msg)
+export const Message = ({ message }) => {
   return (
     <div className="Message">
-      <div className="message-username">{username}</div>
-      <div className="message-text">{text}</div>
+      <div className="message-username">{message.senderId}</div>
+      <div className="message-text">{message.text}</div>
       <img src={
-              Object.values(msg.userStore.users).filter((user) => {
-                return user.id === msg.senderId
-              })[0].avatarURL
-
-      } alt="avtrr"/>
+        Object.values(message.userStore.users).filter((user) => {
+          return user.id === message.senderId
+        })[0].avatarURL
+      } alt="avatar" />
     </div>
   )
 }
