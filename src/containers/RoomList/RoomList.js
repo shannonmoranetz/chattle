@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const styles = theme => ({
 content: {
   flexGrow: 1,
-  paddingTop: theme.spacing.unit * 12,
+  paddingTop: theme.spacing.unit * 19,
   paddingLeft: theme.spacing.unit * 2,
   }
 })

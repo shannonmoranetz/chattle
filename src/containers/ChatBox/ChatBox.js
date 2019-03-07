@@ -32,6 +32,8 @@ const styles = theme => ({
     margin: 10,
     width: 120,
     height: 120,
+    position: 'fixed',
+    bottom: 0,
   },
   rightIcon: {
     marginLeft: 10
@@ -59,7 +61,6 @@ const styles = theme => ({
   },
   drawerButton: {
     marginBottom: 4,
-
   }
 });
 
@@ -135,7 +136,7 @@ export class ChatBox extends Component {
   }
 
   render() {
-    let { currentUser, currentRoomId, avatar, classes } = this.props;
+    let { currentUser, currentRoomId, avatar, rooms, classes } = this.props;
     return (
       <div className={classes.root}>
         {!currentUser ? (
@@ -156,10 +157,17 @@ export class ChatBox extends Component {
                         log out <Icon className={classes.rightIcon}>exit_to_app</Icon>
                       </Button>
                     </Grid>
+
+                    <Grid item>
+                    <p className="user-greeting">hello, {currentUser}</p>
+                    </Grid>
+
                   </Grid>
+        {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+
                 </Toolbar>
               </AppBar>
-
+          <div>
               <div className={classes.toolbar}>
                 <Drawer
                   className={classes.drawer}
@@ -170,11 +178,12 @@ export class ChatBox extends Component {
                 </Drawer>
               </div>
 
-              <MessageList />
             </div>
+            </div>
+
           )}
         {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-        {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+        {currentUser && <MessageList />}
       </div>
     )
   }

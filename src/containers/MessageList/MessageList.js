@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Message from '../../components/Message/Message';
 import PropTypes from 'prop-types';
 
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+}
+
 export class MessageList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      msgAvatar: ''
+    }
+  }
 
   getSnapshotBeforeUpdate = () => {
     const node = ReactDOM.findDOMNode(this);
@@ -18,17 +33,17 @@ export class MessageList extends Component {
   }
 
   render() {
-    let { currentUser, currentRoomId, messages } = this.props;
+    // console.log(this.props)
+    let { currentRoomId, messages, classes } = this.props;
     return (
-      <div className="MessageList">
-        <p className="user-greeting">hello, {currentUser}</p>
+      <div className={classes.root}>
         {!currentRoomId ? (
           <div className="join-room">join a room to see messages...</div>
         ) : (
             <div className="messages">
               {messages.map((message, i) => {
                 return (
-                  <Message key={i} username={message.senderId} text={message.text} />
+                  <Message key={i} username={message.senderId} text={message.text} msg={message} />
                 )
               })}
             </div>
@@ -41,10 +56,14 @@ export class MessageList extends Component {
 export const mapStateToProps = (state) => ({
   messages: state.messages,
   currentRoomId: state.currentRoomId,
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  rooms: state.rooms
 })
 
-export default connect(mapStateToProps)(MessageList);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps)
+)(MessageList);
 
 MessageList.propTypes = {
   currentRoomId: PropTypes.string,
