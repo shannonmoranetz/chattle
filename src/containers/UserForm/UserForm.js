@@ -68,9 +68,13 @@ class UserForm extends Component {
               autoFocus
             />
           </form>
-          <div className="avatars">
-            <img src={avatars.llama} onClick={() => this.selectAvatar(avatars.llama)} alt='llama' />
-            <img src={avatars.pig} onClick={() => this.selectAvatar(avatars.pig)} alt='pig' />
+          <div className="avatar-select">
+            {avatars.filter((avatar) => {
+              return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
+            })
+              .map((avatar, index) => {
+                return (<img src={avatar} className="avatar" key={index} onClick={() => this.selectAvatar(avatar)} alt='avatar' />)
+              })}
           </div>
         </div>
       </div>
