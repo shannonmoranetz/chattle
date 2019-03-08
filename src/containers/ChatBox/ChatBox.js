@@ -41,10 +41,11 @@ const styles = (theme) => ({
     overflowX: 'hidden'
   },
   avatar: {
-    height: '100%',
-    width: '100%',
+    height: '85%',
+    width: '85%',
     textAlign: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: 15
   },
   appBar: {
     width: '100%',
@@ -55,6 +56,7 @@ const styles = (theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    overflowY: 'hidden'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -70,16 +72,43 @@ const styles = (theme) => ({
   centeredItem: {
     width: '100%',
     textAlign: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     fontFamily: 'Sacramento',
     width: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: 0,
+    paddingBottom: 0
+
   },
   rightIcon: {
     marginLeft: 10
   },
+  userGreeting: {
+    fontSize: 20,
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center',
+    letterSpacing: 0.4,
+    lineHeight: 1.5,
+    marginTop: 4
+  },
+  roomGreeting: {
+    fontSize: 16,
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center',
+    letterSpacing: 0.4,
+    color: '#dedede',
+  },
+  listItem: {
+    padding: 0
+  },
+  toolbar: {
+    paddingRight: 0
+
+  }
 });
 
 export class ChatBox extends Component {
@@ -153,13 +182,29 @@ export class ChatBox extends Component {
     }
   }
 
+  getRoomDisplay = () => {
+    let { currentRoomId } = this.props
+    if (currentRoomId) {
+      let currentRoom = this.props.rooms.filter((room) => {
+        return room.id === currentRoomId
+      })
+      if (currentRoom.length === 0) {
+        return null
+      } else {
+        return currentRoom[0].name
+      }
+    } else {
+      return null
+    }
+  }
+
   render() {
     let { currentUser, currentRoomId, avatar, classes } = this.props;
     return (
       <div className={classes.root}>
         {!currentUser &&
-          <Dialog open={true} maxWidth="xl" TransitionComponent={this.Transition} transitionDuration={1000}>
-            <UserForm initializeChat={this.initializeChat}/>
+          <Dialog open={true} maxWidth="md" TransitionComponent={this.Transition} transitionDuration={1000}>
+            <UserForm initializeChat={this.initializeChat} />
           </Dialog>}
         <div >
           <Drawer className={classes.drawer} variant="permanent" anchor="left"
@@ -169,30 +214,31 @@ export class ChatBox extends Component {
             <Divider />
             <List >
               <ListItem >
-                <Typography className={classes.title} variant="h3" align="center">Chattle</Typography>
+                <Typography className={classes.title} variant="h3" align="center">Chattle</Typography><Icon>favorite_border</Icon>
               </ListItem>
               <ListItem button >
-                  <Button className={classes.centeredItem} variant="contained" color="secondary" onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
+                <Button className={classes.centeredItem} variant="contained" color="secondary" onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
               </ListItem>
               <Divider />
               <ListItem className={classes.flexItem}>
-                <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/>
+                <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} />
               </ListItem>
               <Divider />
-              <ListItem >
-                <Typography variant="overline" className={classes.centeredItem}>Hello, {currentUser}!</Typography>
+              <ListItem className={classes.listItem}>
+                <Typography variant="overline" className={classes.userGreeting}>{currentUser}</Typography>
               </ListItem>
-              <ListItem >
-              {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+              {currentRoomId && <Typography variant="overline" className={classes.roomGreeting}>#{this.getRoomDisplay()}</Typography>}
+              <ListItem className={classes.listItem}>
+                {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
               </ListItem>
             </List>
           </Drawer>
           <main className={classes.content}>
-            <div className={classes.toolbar}/>
-              {currentUser && <MessageList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/>}
+            <div className={classes.toolbar} />
+            {currentUser && <MessageList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} />}
           </main>
           <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
+            <Toolbar className={classes.toolbar}>
               {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
             </Toolbar>
           </AppBar>

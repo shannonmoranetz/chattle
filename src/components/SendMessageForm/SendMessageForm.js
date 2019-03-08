@@ -6,12 +6,11 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    // flexDirection: 'column',
     width: '100%'
   },
   stickToBottom: {
@@ -23,12 +22,19 @@ const styles = theme => ({
   },
   userForm: {
     width: '100%',
-    paddingLeft: 5
+    paddingLeft: 5,
+    fontFamily: 'Roboto Condensed',
+    fontSize: 30
   },
   sendButton: {
-
+    minWidth: 90,
+    borderRadius: 0
   },
-
+  label: {
+    paddingLeft: 5,
+    fontFamily: 'Roboto Condensed',
+    fontSize: 20
+  }
 })
 
 export class SendMessageForm extends Component {
@@ -54,13 +60,12 @@ export class SendMessageForm extends Component {
     return (
       <form className={classes.root} onSubmit={this.handleSubmit}>
         <FormControl className={classes.stickToBottom}>
-              <InputLabel htmlFor="message-input" className={classes.userForm}>message</InputLabel>
+              <InputLabel htmlFor="message-input" className={classes.label}>Type a message...</InputLabel>
               <Input className={classes.userForm} onChange={this.handleChange}
                 id="message-input"
                 type="text"
                 autoComplete='off'
                 value={this.state.message}
-
               />
         </FormControl>
               <Button variant="contained" onClick={this.handleSubmit} color="secondary" className={classes.sendButton}>

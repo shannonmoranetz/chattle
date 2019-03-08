@@ -4,20 +4,21 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Hidden } from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
 
 const styles = {
   root: {
     width: '100%',
-    color: '#48494a',
-    textShadow: '2px 2px 2px #658c91'
   },
   title: {
     fontFamily: 'Sacramento',
     marginTop: 25,
+    textShadow: '2px 2px 2px #658c91'
   },
   subtitle: {
     fontFamily: 'Sacramento',
-    marginTop: 30,
+    marginLeft: 200,
+    fontSize: 30
   }
 };
 
@@ -26,10 +27,9 @@ export const Header = (props) => {
   return (
     <div className={classes.root}>
           <Typography className={classes.title} variant="h1" align="center">
-            Chattle
-            <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon" alt="heart"></img>
+            Chattle <Icon fontSize="large">favorite_border</Icon>
           </Typography>
-
+          <Typography variant="subtitle1" align="center" className={classes.subtitle}>Chat with your friends!</Typography>
     </div>
   )
 }

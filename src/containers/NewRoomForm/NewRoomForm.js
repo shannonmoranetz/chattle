@@ -81,7 +81,7 @@ export class NewRoomForm extends Component {
           Good news! That room already exists.</Typography>}
         <form onSubmit={this.handleSubmit}>
           <FormControl className={classes.userForm}>
-            <Grid container direction="column" spacing={36}>
+            <Grid container direction="column">
               <Grid item>
                 <InputLabel htmlFor="newroom-input">Room Name</InputLabel>
                 <Input
@@ -89,6 +89,7 @@ export class NewRoomForm extends Component {
                   type="text"
                   onChange={this.handleChange}
                   autoFocus={true}
+                  value={this.state.roomName}
                 />
               </Grid>
               <Grid item>

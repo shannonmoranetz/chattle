@@ -18,8 +18,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Header from '../../components/Header/Header';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -40,23 +46,35 @@ const styles = {
     textAlign: 'center',
   },
   userInput: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    'label[data-shrink=false] + & ::-webkit-input-placeholder': {
+      opacity: '0.5 !important',
+  },
+  paddingLeft: 5
   },
   login: {
     marginTop: 15,
-    marginBottom: 30
-
+    marginBottom: 30,
   },
   instruction: {
-    marginTop: 15
+    marginTop: 15,
+    justifyContent: 'center',
   },
   divide: {
     marginBottom: 15
   },
   appBar: {
     backgroundColor: '#dedede'
+  },
+  summary: {
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+      '& $primary, & $icon': {
+        color: theme.palette.common.white,
+      },
+    },
   }
-};
+});
 
 class UserForm extends Component {
   constructor() {
@@ -108,31 +126,34 @@ class UserForm extends Component {
               <Grid item>
                 <form onSubmit={this.onSubmit} className={classes.userForm}>
                   <FormControl className={classes.userForm}>
-                    <InputLabel htmlFor="login-input" show={true}>Create a user or log in</InputLabel>
+                    <InputLabel htmlFor="login-input">Create a user or log in</InputLabel>
                     <Input id="login-input" placeholder="Username" type="text" className={classes.userInput} onChange={this.onChange} autoFocus={true} />
-                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>person_add</Icon></Button>
+                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>lock_open</Icon></Button>
                   </FormControl>
                 </form>
               </Grid>
             </Grid>
           </Toolbar>
         </AppBar>
-        <Typography variant="h5" gutterBottom align="center" className={classes.instruction}>
-          first visit? pick a chat avatar before logging in:
-        </Typography>
-        <Divider className={classes.divide} />
-        <Grid container justify="center" alignItems="center" >
-          {avatars.filter((avatar) => {
-            return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
-          })
-            .map((avatar, index) => {
-              return (
-                <Grid key={index} className={classes.divide} >
-                  <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
-                </Grid>
-              )
-            })}
-        </Grid>
+        <ExpansionPanel>
+          <ExpansionPanelSummary className={classes.summary} justify="center" expandIcon={<ExpandMoreIcon fontSize="large"/>}>
+          <Typography variant="h5" gutterBottom justify="center" className={classes.instruction}>First visit? Click to select a chat avatar before logging in:</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Grid container justify="center" alignItems="center" >
+              {avatars.filter((avatar) => {
+                return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
+              })
+                .map((avatar, index) => {
+                  return (
+                    <Grid key={index} className={classes.divide} >
+                      <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+                    </Grid>
+                  )
+                })}
+            </Grid>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </div>
     )
   }

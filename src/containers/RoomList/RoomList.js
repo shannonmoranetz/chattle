@@ -16,16 +16,12 @@ import Typography from '@material-ui/core/Typography';
 
 
 const styles = theme => ({
-  menuItem: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& $primary, & $icon': {
-        color: theme.palette.common.white,
-      },
-    },
+  root: {
+    textAlign: 'center',
   },
-  rightIcon: {
-    marginLeft: 10,
+
+  menuItem: {
+    padding: 6
   }
 });
 
@@ -42,10 +38,10 @@ export class RoomList extends Component {
   }
 
   render() {
-    let { createRoom, rooms, subscribeToRoom, classes } = this.props;
+    let { createRoom, rooms, subscribeToRoom, classes, currentRoomId } = this.props;
     return (
-      <div className="RoomList">
-        <Typography variant="h4" gutterBottom align="center">Rooms</Typography>
+      <div className={classes.root}>
+        <Typography variant="h5" align="center">Rooms</Typography>
         {this.state.showNewRoomForm ? (
           <NewRoomForm createRoom={createRoom} updateDisplay={this.handleClick} />
         ) : (
@@ -54,16 +50,14 @@ export class RoomList extends Component {
                 {rooms.map((room) => {
                   return (
                     <MenuItem href="#" key={room.id} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
-                      <Icon color="action" className={classes.rightIcon}>
-                      sms
-                      </Icon>
-                      <ListItemText classes={{ primary: classes.primary }} inset primary={room.name} />
+                      <Icon color="action" >sms</Icon>
+                  <ListItemText inset primary={room.name}/>
                     </MenuItem>
                   )
                 })
                 }
               </MenuList>
-              <Button variant="contained" color="primary" onClick={this.handleClick}>
+              <Button variant="contained" align="center" color="primary" onClick={this.handleClick}>
                 create room <Icon className={classes.rightIcon}>group_add</Icon>
               </Button>
             </div>

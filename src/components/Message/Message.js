@@ -19,7 +19,9 @@ const styles = {
     padding: 5,
   },
   sender: {
-    marginLeft: 48
+    marginLeft: 48,
+    fontSize: 13,
+    letterSpacing: 0.4
   },
   timestamp: {
     marginLeft: 62,
