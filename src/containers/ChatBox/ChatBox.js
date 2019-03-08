@@ -28,16 +28,20 @@ import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-
-
-
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const drawerWidth = 200;
 
 const styles = (theme) => ({
   root: {
     display: 'flex',
-
+  },
+  avatar: {
+    height: '100%',
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center'
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -56,6 +60,20 @@ const styles = (theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+  },
+  flexItem: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  centeredItem: {
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
+  title: {
+    fontFamily: 'Sacramento',
+    width: '100%',
+    textAlign: 'center'
   },
 });
 
@@ -144,22 +162,27 @@ export class ChatBox extends Component {
             classes={{
               paper: classes.drawerPaper,
             }}>
-            <div className={classes.toolbar} />
+            <Divider />
+            <List >
+              <ListItem >
+                <Typography className={classes.title} variant="display2" align="center">chattle</Typography>
+              </ListItem>
+              <ListItem button >
+                  <Button className={classes.centeredItem} variant="contained" color="secondary" onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
+              </ListItem>
               <Divider />
-              <List className={classes.contentContainer}>
-                <ListItem >
-                  <Typography className={classes.navTitle} variant="body1" align="center">chattle <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon-sm" alt="heart"></img></Typography>
-                </ListItem>
-                <ListItem button >
-                    <Button variant="contained" color="secondary" className={classes.drawerButton} onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
-                </ListItem>
-                <ListItem >
-                  <p className="user-greeting">hello, {currentUser}</p>
-                </ListItem>
-                <ListItem >
-                  <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/> {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
-                </ListItem>
-              </List>
+              <ListItem className={classes.flexItem}>
+                <Typography variant="title" gutterBottom align="center">rooms:</Typography>
+                <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/>
+              </ListItem>
+              <Divider />
+              <ListItem >
+                <Typography variant="body2" className={classes.centeredItem}>hello, {currentUser}</Typography>
+              </ListItem>
+              <ListItem >
+              {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+              </ListItem>
+            </List>
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar}/>

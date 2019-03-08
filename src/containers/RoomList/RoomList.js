@@ -5,14 +5,29 @@ import { compose } from 'redux';
 import { updateCurrentRoom } from '../../actions';
 import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import PropTypes from 'prop-types';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+
+
 
 const styles = theme => ({
-content: {
-  // flexGrow: 1,
-  // paddingTop: theme.spacing.unit * 19,
-  // paddingLeft: theme.spacing.unit * 2,
-  }
-})
+  menuItem: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& $primary, & $icon': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+  rightIcon: {
+    marginLeft: 10,
+  },
+});
 
 export class RoomList extends Component {
   constructor() {
@@ -24,30 +39,32 @@ export class RoomList extends Component {
 
   handleClick = () => {
     this.setState({ showNewRoomForm: !this.state.showNewRoomForm });
-    this.props.updateCurrentRoom('');
   }
 
   render() {
-    let { createRoom, rooms, currentRoomId, subscribeToRoom, classes } = this.props;
+    let { createRoom, rooms, subscribeToRoom, classes } = this.props;
     return (
       <div className="RoomList">
         {this.state.showNewRoomForm ? (
-          <NewRoomForm createRoom={createRoom}
-            updateDisplay={this.handleClick} />
+          <NewRoomForm createRoom={createRoom} updateDisplay={this.handleClick} />
         ) : (
-            <div className={classes.content}>
-        <h3>rooms:</h3>
-              <ul>
-                {rooms.map(room => {
-                  const active = currentRoomId === room.id ? '-active' : '';
+            <div>
+              <MenuList>
+                {rooms.map((room) => {
                   return (
-                    <li key={room.id} className={'room' + active}>
-                      <div href="#" onClick={() => subscribeToRoom(room.id)}># {room.name}</div>
-                    </li>
+                    <MenuItem href="#" key={room.id} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
+                      <ListItemIcon className={classes.icon}>
+                        <DraftsIcon />
+                      </ListItemIcon>
+                      <ListItemText classes={{ primary: classes.primary }} inset primary={room.name} />
+                    </MenuItem>
                   )
-                })}
-              </ul>
-              <div onClick={this.handleClick}>create new room</div>
+                })
+                }
+              </MenuList>
+              <Button variant="contained" color="primary" onClick={this.handleClick}>
+                create room <Icon className={classes.rightIcon}>group_add</Icon>
+              </Button>
             </div>
           )}
       </div>

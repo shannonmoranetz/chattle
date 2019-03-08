@@ -33,7 +33,7 @@ const styles = {
     '&:hover': {
       boxShadow: '8px 8px 10px black',
       cursor: 'pointer'
-     }
+    }
   },
   rightIcon: {
     marginLeft: 10
@@ -95,11 +95,9 @@ class UserForm extends Component {
     let { classes } = this.props;
     return (
       <div className={classes.root}>
-
-        
         <AppBar position="relative" color="primary">
           <Toolbar >
-          <Header />
+            <Header />
             <form onSubmit={this.onSubmit} className={classes.userForm}>
               <FormControl className={classes.userForm}>
                 <Grid container >
@@ -123,7 +121,6 @@ class UserForm extends Component {
             </form>
           </Toolbar>
         </AppBar>
-
         <Typography variant="h5" gutterBottom align="center" className={classes.instruction}>
           first visit? pick a chat avatar before logging in:
         </Typography>

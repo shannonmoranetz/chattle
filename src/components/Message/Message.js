@@ -17,12 +17,17 @@ const styles = {
     padding: 5
   },
   sender: {
-    // marginLeft: 46
+    marginLeft: 48
+  },
+  timestamp: {
+    marginLeft: 62,
+    color: '#dedede'
   }
 }
 
 export const Message = ({ message, classes, currentUser }) => {
-  console.log(message)
+  console.log(message.createdAt)
+  console.log(message.createdAt.substr(11).slice(0, -4));
   return (
     <div className={classes.root}>
       { currentUser === message.senderId ? (
@@ -38,6 +43,7 @@ export const Message = ({ message, classes, currentUser }) => {
         label={message.text}
         className={classes.chip}
         />
+        <Typography variant="body2" className={classes.timestamp}>{message.createdAt.substr(11).slice(0, -4)}</Typography>
       </div>
       ) : (
         <div>
