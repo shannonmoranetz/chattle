@@ -38,6 +38,7 @@ const drawerWidth = 200;
 const styles = (theme) => ({
   root: {
     display: 'flex',
+    overflowX: 'hidden'
   },
   avatar: {
     height: '100%',
@@ -46,8 +47,8 @@ const styles = (theme) => ({
     justifyContent: 'center'
   },
   appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    width: '100%',
+    marginLeft: 200,
     top: 'auto',
     bottom: 0,
   },

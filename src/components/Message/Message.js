@@ -7,14 +7,16 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
+
 const styles = {
   avatar: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
   },
   root: {
     display: 'flex',
-    padding: 5
+    flexDirection: 'column',
+    padding: 5,
   },
   sender: {
     marginLeft: 48
@@ -22,7 +24,7 @@ const styles = {
   timestamp: {
     marginLeft: 62,
     color: '#dedede'
-  }
+  },
 }
 
 export const Message = ({ message, classes, currentUser }) => {
@@ -40,7 +42,8 @@ export const Message = ({ message, classes, currentUser }) => {
         }
         label={message.text}
         className={classes.chip}
-        />
+        >
+        </Chip>
         <Typography variant="body2" className={classes.timestamp}>{message.createdAt.substr(11).slice(0, -4)}</Typography>
       </div>
       ) : (
