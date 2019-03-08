@@ -50,16 +50,21 @@ export class SendMessageForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (this.state.message.length > 125) {
+      alert('Messages may not exceed 125 characters. Please be more succinct!')
+      return;
+    }
     this.props.sendMessage(this.state.message);
     this.setState({ message: '' });
   }
 
   render() {
-    let { classes } = this.props
+    let { classes } = this.props;
+    let { message } = this.state;
     return (
       <form className={classes.root} onSubmit={this.handleSubmit}>
-        <FormControl className={classes.stickToBottom}>
-              <InputLabel htmlFor="message-input" className={classes.label}>Type a message...</InputLabel>
+        <FormControl error={message.length > 125 ? (true) : (false)} className={classes.stickToBottom}>
+              <InputLabel htmlFor="message-input" className={classes.label}>{message.length > 125 ? ('Message too long!') : ('Type a message...')}</InputLabel>
               <Input className={classes.userForm} onChange={this.handleChange}
                 id="message-input"
                 type="text"
