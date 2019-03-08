@@ -1,7 +1,38 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { setError } from '../../actions';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+import { compose } from 'redux';
+
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  userForm: {
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  rightIcon: {
+    marginLeft: 10
+  },
+  login: {
+    width: '100%',
+    marginTop: 20
+  },
+};
 
 export class NewRoomForm extends Component {
   constructor() {
@@ -42,19 +73,35 @@ export class NewRoomForm extends Component {
   }
 
   render() {
-    const { roomName, duplicateSubmitted } = this.state;
+    const { duplicateSubmitted } = this.state;
+    const { classes } = this.props;
     return (
-      <div className="NewRoomForm">
-        {duplicateSubmitted && <p>room already exists</p>}
+      <div className={classes.root}>
+        {duplicateSubmitted && <Typography variant="body1" gutterBottom align="center" className={classes.instruction}>
+          Good news! That room already exists.</Typography>}
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange}
-            type="text"
-            value={roomName}
-            placeholder="new room"
-            required
-          />
+          <FormControl className={classes.userForm}>
+            <Grid container direction="column" spacing={36}>
+              <Grid item>
+                <InputLabel htmlFor="newroom-input">Room Name</InputLabel>
+                <Input
+                  id="newroom-input"
+                  type="text"
+                  onChange={this.handleChange}
+                  autoFocus={true}
+                />
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>
+                  Create <Icon className={classes.rightIcon}>library_add</Icon>
+                </Button>
+                <Button variant="contained" color="secondary" onClick={this.moveBack} className={classes.login}>
+                  Back <Icon className={classes.rightIcon}>chevron_left</Icon>
+                </Button>
+              </Grid>
+            </Grid>
+          </FormControl>
         </form>
-        <div onClick={this.moveBack}>back</div>
       </div>
     )
   }
@@ -68,7 +115,10 @@ export const mapDispatchToProps = (dispatch) => ({
   setError: (error) => dispatch(setError(error))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(NewRoomForm);
 
 NewRoomForm.propTypes = {
   createRoom: PropTypes.func,

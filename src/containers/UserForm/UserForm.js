@@ -19,7 +19,6 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Header from '../../components/Header/Header';
 
-
 const styles = {
   root: {
     display: 'flex',
@@ -65,7 +64,7 @@ class UserForm extends Component {
 
   onSubmit = async (event) => {
     let { username, avatar } = this.state;
-    let { updateCurrentUser, loginUser, history, setError } = this.props;
+    let { updateCurrentUser, initializeChat, history, setError } = this.props;
     event.preventDefault();
     try {
       await fetch('https://chattle-auth.herokuapp.com/users', {
@@ -76,7 +75,7 @@ class UserForm extends Component {
         body: JSON.stringify({ username, avatar })
       })
       updateCurrentUser(username);
-      loginUser();
+      initializeChat();
       history.push('/');
     } catch (error) {
       setError(`${error}`);

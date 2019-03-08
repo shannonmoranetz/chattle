@@ -28,7 +28,7 @@ export const Header = (props) => {
       <Grid justify="space-between" container>
         <Grid item xs={8}>
           <Typography className={classes.title} variant="h1" align="center">
-            chattle
+            Chattle
             <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon" alt="heart"></img>
           </Typography>
         </Grid>

@@ -58,7 +58,6 @@ const styles = (theme) => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
   flexItem: {
@@ -75,13 +74,12 @@ const styles = (theme) => ({
     width: '100%',
     textAlign: 'center'
   },
+  rightIcon: {
+    marginLeft: 10
+  },
 });
 
 export class ChatBox extends Component {
-
-  componentDidMount() {
-    this.initializeChat()
-  }
 
   initializeChat = async () => {
     const chatManager = new Chatkit.ChatManager({
@@ -154,7 +152,7 @@ export class ChatBox extends Component {
       <div className={classes.root}>
         {!currentUser ? (
           <Dialog open={true} maxWidth="xl">
-            <UserForm />
+            <UserForm initializeChat={this.initializeChat}/>
           </Dialog>
         ) : (
         <div >
@@ -165,19 +163,18 @@ export class ChatBox extends Component {
             <Divider />
             <List >
               <ListItem >
-                <Typography className={classes.title} variant="display2" align="center">chattle</Typography>
+                <Typography className={classes.title} variant="h3" align="center">Chattle</Typography>
               </ListItem>
               <ListItem button >
                   <Button className={classes.centeredItem} variant="contained" color="secondary" onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
               </ListItem>
               <Divider />
               <ListItem className={classes.flexItem}>
-                <Typography variant="title" gutterBottom align="center">rooms:</Typography>
                 <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/>
               </ListItem>
               <Divider />
               <ListItem >
-                <Typography variant="body2" className={classes.centeredItem}>hello, {currentUser}</Typography>
+                <Typography variant="overline" className={classes.centeredItem}>Hello, {currentUser}!</Typography>
               </ListItem>
               <ListItem >
               {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}

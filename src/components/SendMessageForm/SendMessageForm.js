@@ -69,7 +69,6 @@ export class SendMessageForm extends Component {
                 autoComplete='off'
                 value={this.state.message}
                 placeholder=" ..."
-                autoFocus={true}
                 classes={{
                   underline: classes.underline,
                 }}

@@ -26,13 +26,11 @@ const styles = {
 }
 
 export const Message = ({ message, classes, currentUser }) => {
-  console.log(message.createdAt)
-  console.log(message.createdAt.substr(11).slice(0, -4));
   return (
     <div className={classes.root}>
       { currentUser === message.senderId ? (
       <div>
-        <Typography variant="body1" className={classes.sender}>{message.senderId}</Typography>
+        <Typography variant="overline" className={classes.sender}>{message.senderId}</Typography>
         <Chip color="secondary" avatar={
           <Avatar src={
             Object.values(message.userStore.users).filter((user) => {
@@ -47,7 +45,7 @@ export const Message = ({ message, classes, currentUser }) => {
       </div>
       ) : (
         <div>
-        <Typography variant="body1" align="left" className={classes.sender}>{message.senderId}</Typography>
+        <Typography variant="overline" align="left" className={classes.sender}>{message.senderId}</Typography>
         <Chip color="primary" avatar={
           <Avatar src={
             Object.values(message.userStore.users).filter((user) => {
@@ -58,6 +56,7 @@ export const Message = ({ message, classes, currentUser }) => {
         label={message.text}
         className={classes.chip}
         />
+        <Typography variant="body2" className={classes.timestamp}>{message.createdAt.substr(11).slice(0, -4)}</Typography>
       </div>
       )}
     </div>

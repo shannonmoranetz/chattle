@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
+import Typography from '@material-ui/core/Typography';
 
 
 const styles = theme => ({
@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   rightIcon: {
     marginLeft: 10,
-  },
+  }
 });
 
 export class RoomList extends Component {
@@ -45,6 +45,7 @@ export class RoomList extends Component {
     let { createRoom, rooms, subscribeToRoom, classes } = this.props;
     return (
       <div className="RoomList">
+        <Typography variant="h4" gutterBottom align="center">Rooms</Typography>
         {this.state.showNewRoomForm ? (
           <NewRoomForm createRoom={createRoom} updateDisplay={this.handleClick} />
         ) : (
@@ -53,9 +54,9 @@ export class RoomList extends Component {
                 {rooms.map((room) => {
                   return (
                     <MenuItem href="#" key={room.id} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
-                      <ListItemIcon className={classes.icon}>
-                        <DraftsIcon />
-                      </ListItemIcon>
+                      <Icon color="action" className={classes.rightIcon}>
+                      sms
+                      </Icon>
                       <ListItemText classes={{ primary: classes.primary }} inset primary={room.name} />
                     </MenuItem>
                   )
