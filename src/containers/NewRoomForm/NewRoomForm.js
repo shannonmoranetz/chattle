@@ -51,6 +51,10 @@ export class NewRoomForm extends Component {
     let { rooms, createRoom, setError } = this.props;
     event.preventDefault();
     const name = roomName.toLowerCase();
+    if (name.length > 12) {
+      alert('Room length may not exceed 12 characters. Please try again with a shorter name!')
+      return;
+    }
     try {
       this.setState({ duplicateSubmitted: false })
       rooms.forEach((room) => {
@@ -72,27 +76,26 @@ export class NewRoomForm extends Component {
   }
 
   render() {
-    const { duplicateSubmitted } = this.state;
+    const { duplicateSubmitted, roomName } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         {duplicateSubmitted && <Typography variant="body1" gutterBottom align="center" className={classes.instruction}>
           Good news! That room already exists.</Typography>}
         <form onSubmit={this.handleSubmit}>
-          <FormControl className={classes.userForm}>
+          <FormControl error={roomName.length > 12 ? (true) : (false)} className={classes.userForm}>
             <Grid container direction="column">
               <Grid item>
-                <InputLabel htmlFor="newroom-input">Room Name</InputLabel>
+                <InputLabel htmlFor="newroom-input">{roomName.length > 12 ? ('Name too long!') : ('Room Name')}</InputLabel>
                 <Input
                   id="newroom-input"
                   type="text"
                   onChange={this.handleChange}
                   autoFocus={true}
-                  value={this.state.roomName}
+                  value={roomName}
                 />
               </Grid>
               <Grid item>
-              
                 <Button variant="contained" color="secondary" type="submit" onClick={this.onSubmit} className={classes.login}>
                   Create <Icon className={classes.rightIcon}>library_add</Icon>
                 </Button>
