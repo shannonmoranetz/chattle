@@ -34,7 +34,14 @@ const styles = theme => ({
     '&:hover': {
       boxShadow: '8px 8px 10px black',
       cursor: 'pointer'
-    }
+    },
+  },
+  bigAvatarActive: {
+    margin: 10,
+    width: 170,
+    height: 170,
+    boxShadow: '8px 8px 10px black',
+    cursor: 'pointer'
   },
   rightIcon: {
     marginLeft: 10
@@ -107,8 +114,17 @@ class UserForm extends Component {
     this.setState({ username: event.target.value.toLowerCase() });
   }
 
-  selectAvatar = (imagePath) => {
-    this.setState({ avatar: imagePath })
+  selectAvatar = async (imagePath) => {
+    await this.setState({ avatar: imagePath })
+    this.avatarIsActive()
+  }
+
+  avatarIsActive = (avatar) => {
+    if (avatar === this.state.avatar) {
+      return this.props.classes.bigAvatarActive
+    } else {
+      return this.props.classes.bigAvatar
+    }
   }
 
   render() {
@@ -145,7 +161,7 @@ class UserForm extends Component {
                 .map((avatar, index) => {
                   return (
                     <Grid key={index} className={classes.divide} >
-                      <Avatar src={avatar} className={classes.bigAvatar} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
+                      <Avatar src={avatar} className={this.avatarIsActive(avatar)} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
                     </Grid>
                   )
                 })}

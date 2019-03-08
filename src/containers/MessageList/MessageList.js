@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import RoomList from '../../containers/RoomList/RoomList';
 import DialogContent from '@material-ui/core/DialogContent';
+import toDate from 'normalize-date';
 
 const styles={}
 
@@ -19,27 +20,17 @@ export class MessageList extends Component {
 
   cleanTimestamp = (message) => {
     if (this.props.messages.length > 0) {
-    let shortenedTime = message.createdAt.substr(11).slice(0, -4);
-    let minutes = message.createdAt.substr(11).slice(3, 5);
-    let hour = parseInt(shortenedTime.slice(0, 2)) + 5;
-    let timeValue;
-    if (hour > 0 && hour <= 12) {
-      timeValue= "" + hour;
-    } else if (hour > 12) {
-      timeValue= "" + (hour - 12);
-    } else if (hour == 0) {
-      timeValue= "12";
-    }
-    let meridian ;
-    if (hour >= 12) {
-      meridian = 'AM'
+    let cleanedTime = toDate(message.createdAt);
+    let hours = cleanedTime.getHours();
+    let minutes = cleanedTime.getMinutes();
+    let meridian = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    let timeSting = hours + ':' + minutes + ' ' + meridian;
+    return timeSting;
     } else {
-      meridian = 'PM'
-    }
-    let updatedTime = `${timeValue}:${minutes} ${meridian}`
-    return updatedTime
-    } else {
-      return null
+      return null;
     }
   }
 
