@@ -26,6 +26,10 @@ import { Hidden, CssBaseline } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
+import Dialog from '@material-ui/core/Dialog';
+import ReactDOM from 'react-dom';
+
+
 
 const drawerWidth = 200;
 
@@ -36,6 +40,8 @@ const styles = (theme) => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    top: 'auto',
+    bottom: 0,
   },
   drawer: {
     width: drawerWidth,
@@ -58,20 +64,8 @@ const styles = (theme) => ({
 
 export class ChatBox extends Component {
 
-  // scrollToBottom = () => {
-  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  // }
-
-  // componentDidMount() {
-  //   this.scrollToBottom();
-  // }
-
-  // componentDidUpdate() {
-  //   this.scrollToBottom();
-  // }
-
-  loginUser = () => {
-    this.initializeChat();
+  componentDidMount() {
+    this.initializeChat()
   }
 
   initializeChat = async () => {
@@ -142,73 +136,58 @@ export class ChatBox extends Component {
   render() {
     let { currentUser, currentRoomId, avatar, classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         {!currentUser ? (
-          <Route path='/login' render={() => <UserForm loginUser={this.loginUser} />}/>
+          <Dialog open={true} maxWidth="xl">
+            <UserForm />
+          </Dialog>
         ) : (
-            <div className={classes.root}>
-              <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                  <Typography variant="h6" color="inherit" noWrap>
-                    Permanent drawer
-          </Typography>
-                </Toolbar>
-              </AppBar>
-              <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                anchor="left"
-              >
-                <div className={classes.toolbar} />
-                <Divider />
-                <List className={classes.contentContainer}>
-                  <ListItem >
-                    <Typography className={classes.navTitle} variant="body1" align="center">chattle
-                      <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon-sm" alt="heart"></img></Typography>
-                  </ListItem>
-                  <ListItem button >
-                    <Button variant="contained" color="secondary" className={classes.drawerButton} onClick={() => window.location.reload()}>
-                      log out <Icon className={classes.rightIcon}>exit_to_app</Icon>
-                    </Button>
-                  </ListItem>
-                  <ListItem >
-                    <p className="user-greeting">hello, {currentUser}</p>
-                  </ListItem>
-                  <ListItem >
-                    <RoomList subscribeToRoom={this.subscribeToRoom}
-                      createRoom={this.createRoom} />
-                    {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
-                  </ListItem>
-                  <ListItem >
-
-
-        </ListItem>
-
-                </List>
-              </Drawer>
-            </div>
-          )}
-      <main className={classes.content}>
-        <div className={classes.toolbar}>
-            {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-            {currentUser && <MessageList />}
-                              <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
+        <div >
+          <Drawer className={classes.drawer} variant="permanent" anchor="left"
+            classes={{
+              paper: classes.drawerPaper,
+            }}>
+            <div className={classes.toolbar} />
+              <Divider />
+              <List className={classes.contentContainer}>
+                <ListItem >
+                  <Typography className={classes.navTitle} variant="body1" align="center">chattle <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon-sm" alt="heart"></img></Typography>
+                </ListItem>
+                <ListItem button >
+                    <Button variant="contained" color="secondary" className={classes.drawerButton} onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
+                </ListItem>
+                <ListItem >
+                  <p className="user-greeting">hello, {currentUser}</p>
+                </ListItem>
+                <ListItem >
+                  <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} /> {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+                </ListItem>
+              </List>
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.toolbar}/>
+              {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
+              {currentUser && <MessageList />}
+              <Typography paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+                facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+                gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+                donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+                adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+                Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+                imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+                arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+                donec massa sapien faucibus et molestie ac.
+              </Typography>
+          </main>
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <Typography variant="h6" color="inherit" noWrap>Permanent drawer</Typography>
+            </Toolbar>
+          </AppBar>
         </div>
-      </main>
+      )}
       </div>
     )
   }
