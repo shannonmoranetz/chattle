@@ -56,7 +56,6 @@ const styles = (theme) => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
     paddingRight: 24
-
   },
   flexItem: {
     display: 'flex',
@@ -73,7 +72,6 @@ const styles = (theme) => ({
     textAlign: 'center',
     paddingTop: 0,
     paddingBottom: 0
-
   },
   rightIcon: {
     marginLeft: 10
@@ -101,7 +99,6 @@ const styles = (theme) => ({
   },
   toolbar: {
     paddingRight: 0
-
   }
 });
 

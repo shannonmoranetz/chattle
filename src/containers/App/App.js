@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -44,7 +43,6 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default compose(
-  withRouter,
   withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps)
 )(App);

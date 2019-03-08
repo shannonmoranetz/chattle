@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -23,7 +22,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import uuid from 'uuid/v4';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -185,7 +184,6 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default compose(
-  withRouter,
   withStyles(styles),
   connect(null, mapDispatchToProps)
 )(UserForm);

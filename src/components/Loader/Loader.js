@@ -8,7 +8,7 @@ const styles = {
     textAlign: 'center',
     justifyContent: 'center'
   },
-  loadTest: {
+  loadText: {
     marginTop: '20%',
     marginRight: '30%'
   }
@@ -17,7 +17,7 @@ const styles = {
 export const Loader = ({ classes }) => {
   return (
     <div className={classes.root}>
-      <Typography variant="h1" className={classes.loadTest}>Loading...</Typography>
+      <Typography variant="h1" className={classes.loadText}>Loading...</Typography>
     </div>
   )
 }
