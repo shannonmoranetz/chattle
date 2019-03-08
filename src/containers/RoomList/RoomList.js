@@ -7,9 +7,7 @@ import NewRoomForm from '../NewRoomForm/NewRoomForm';
 import PropTypes from 'prop-types';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
@@ -39,7 +37,7 @@ export class RoomList extends Component {
   }
 
   render() {
-    let { createRoom, rooms, subscribeToRoom, classes, currentRoomId } = this.props;
+    let { createRoom, rooms, subscribeToRoom, classes } = this.props;
     return (
       <div className={classes.root}>
         <Typography variant="h5" align="center">Rooms</Typography>

@@ -7,14 +7,9 @@ import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import RoomList from '../../containers/RoomList/RoomList';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 
-
-const styles = {
-  // root: {
-  // }
-}
+const styles={}
 
 export class MessageList extends Component {
   

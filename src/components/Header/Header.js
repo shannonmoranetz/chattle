@@ -2,8 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import { Hidden } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 const styles = {
@@ -20,7 +18,7 @@ const styles = {
     marginLeft: 200,
     fontSize: 30
   },
-  blob: {
+  icon: {
     fontSize: 68
   }
 };
@@ -30,7 +28,7 @@ export const Header = (props) => {
   return (
     <div className={classes.root}>
           <Typography className={classes.title} variant="h1" align="center">
-            Chattle <Icon className={classes.blob}>favorite_border</Icon>
+            Chattle <Icon className={classes.icon}>favorite_border</Icon>
           </Typography>
           <Typography variant="subtitle1" align="center" className={classes.subtitle}>Chat with your friends!</Typography>
     </div>

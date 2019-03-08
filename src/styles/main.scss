@@ -1,14 +1,3 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500|Roboto+Condensed:700|Sacramento');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import './variables.scss';
 @import './normalize.css';
-@import '../containers/App/App.scss';
-@import '../containers/ChatBox/ChatBox.scss';
-@import '../components/Header/Header.scss';
-@import '../components/Loader/Loader.scss';
-@import '../components/Message/Message.scss';
-@import '../containers/MessageList/MessageList.scss';
-@import '../containers/NewRoomForm/NewRoomForm.scss';
-@import '../containers/RoomList/RoomList.scss';
-@import '../components/SendMessageForm/SendMessageForm.scss';
-@import '../containers/UserForm/UserForm.scss';

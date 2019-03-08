@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
-
 const styles = {
   avatar: {
     width: 60,
