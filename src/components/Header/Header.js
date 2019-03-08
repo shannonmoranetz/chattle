@@ -25,14 +25,11 @@ export const Header = (props) => {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Grid justify="space-between" container>
-        <Grid item xs={8}>
           <Typography className={classes.title} variant="h1" align="center">
             Chattle
             <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon" alt="heart"></img>
           </Typography>
-        </Grid>
-      </Grid>
+
     </div>
   )
 }

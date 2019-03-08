@@ -23,7 +23,6 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-
   },
   bigAvatar: {
     margin: 10,
@@ -38,18 +37,24 @@ const styles = {
     marginLeft: 10
   },
   userForm: {
-    width: '100%',
+    textAlign: 'center',
+  },
+  userInput: {
+    backgroundColor: 'white'
   },
   login: {
-    height: '100%',
-    justify: 'center',
-    alignItems: 'center'
+    marginTop: 15,
+    marginBottom: 30
+
   },
   instruction: {
     marginTop: 15
   },
   divide: {
     marginBottom: 15
+  },
+  appBar: {
+    backgroundColor: '#dedede'
   }
 };
 
@@ -94,30 +99,22 @@ class UserForm extends Component {
     let { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="relative" color="primary">
+        <AppBar position="relative" className={classes.appBar}>
           <Toolbar >
-            <Header />
-            <form onSubmit={this.onSubmit} className={classes.userForm}>
-              <FormControl className={classes.userForm}>
-                <Grid container >
-                  <Grid item>
-                    <InputLabel htmlFor="login-input">Log in</InputLabel>
-                    <Input
-                      id="login-input"
-                      type="text"
-                      placeholder="username"
-                      onChange={this.onChange}
-                      autoFocus={true}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>
-                      chat! <Icon className={classes.rightIcon}>person_add</Icon>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </FormControl>
-            </form>
+            <Grid container direction="column">
+              <Grid item>
+                <Header />
+              </Grid>
+              <Grid item>
+                <form onSubmit={this.onSubmit} className={classes.userForm}>
+                  <FormControl className={classes.userForm}>
+                    <InputLabel htmlFor="login-input" show={true}>Create a user or log in</InputLabel>
+                    <Input id="login-input" placeholder="Username" type="text" className={classes.userInput} onChange={this.onChange} autoFocus={true} />
+                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>person_add</Icon></Button>
+                  </FormControl>
+                </form>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
         <Typography variant="h5" gutterBottom align="center" className={classes.instruction}>
