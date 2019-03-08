@@ -21,6 +21,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import uuid from 'uuid/v4';
 
 const styles = theme => ({
   root: {
@@ -158,9 +159,9 @@ class UserForm extends Component {
               {avatars.filter((avatar) => {
                 return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
               })
-                .map((avatar, index) => {
+                .map((avatar) => {
                   return (
-                    <Grid key={index} className={classes.divide} >
+                    <Grid key={uuid()} className={classes.divide} >
                       <Avatar src={avatar} className={this.avatarIsActive(avatar)} onClick={() => this.selectAvatar(avatar)} alt='avatar' />
                     </Grid>
                   )

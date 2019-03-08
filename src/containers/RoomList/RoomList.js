@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
+import uuid from 'uuid/v4';
 
 const styles = theme => ({
   root: {
@@ -48,7 +49,7 @@ export class RoomList extends Component {
               <MenuList>
                 {rooms.map((room) => {
                   return (
-                    <MenuItem href="#" key={room.id} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
+                    <MenuItem href="#" key={uuid()} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
                       <Icon color="action" >sms</Icon>
                   <ListItemText inset primary={room.name}/>
                     </MenuItem>

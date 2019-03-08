@@ -9,6 +9,7 @@ import Slide from '@material-ui/core/Slide';
 import RoomList from '../../containers/RoomList/RoomList';
 import DialogContent from '@material-ui/core/DialogContent';
 import toDate from 'normalize-date';
+import uuid from 'uuid/v4';
 
 const styles={}
 
@@ -46,9 +47,9 @@ export class MessageList extends Component {
           </Dialog>
         ) : (
             <div className="messages">
-              {messages.map((message, i) => {
+              {messages.map((message) => {
                 return (
-                  <Message key={i} message={message} timestamp={this.cleanTimestamp(message)}/>
+                  <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)}/>
                 )
               }).reverse()}
             </div>
