@@ -27,10 +27,10 @@ export const Header = (props) => {
   const { classes } = props;
   return (
     <div className={classes.root}>
-          <Typography className={classes.title} variant="h1" align="center">
-            Chattle <Icon className={classes.icon}>favorite_border</Icon>
-          </Typography>
-          <Typography variant="subtitle1" align="center" className={classes.subtitle}>Chat with your friends!</Typography>
+      <Typography className={classes.title} variant="h1" align="center">
+        Chattle <Icon className={classes.icon}>favorite_border</Icon>
+      </Typography>
+      <Typography variant="subtitle1" align="center" className={classes.subtitle}>Chat with your friends!</Typography>
     </div>
   )
 }

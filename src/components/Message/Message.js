@@ -34,38 +34,38 @@ const styles = {
 export const Message = ({ message, classes, currentUser, timestamp }) => {
   return (
     <div className={classes.root}>
-      { currentUser === message.senderId ? (
-      <div>
-        <Typography variant="overline" className={classes.sender}>{message.senderId}</Typography>
-        <Chip color="secondary" avatar={
-          <Avatar src={
-            Object.values(message.userStore.users).filter((user) => {
-              return user.id === message.senderId
-            })[0].avatarURL
-          } alt="avatar" className={classes.avatar}/>
-        }
-        label={message.text}
-        className={classes.chip}
-        >
-        </Chip>
-        <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
-      </div>
-      ) : (
+      {currentUser === message.senderId ? (
         <div>
-        <Typography variant="overline" align="left" className={classes.sender}>{message.senderId}</Typography>
-        <Chip color="primary" avatar={
-          <Avatar src={
-            Object.values(message.userStore.users).filter((user) => {
-              return user.id === message.senderId
-            })[0].avatarURL
-          } alt="avatar" className={classes.avatar}/>
-        }
-        label={message.text}
-        className={classes.chip}
-        />
-        <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
-      </div>
-      )}
+          <Typography variant="overline" className={classes.sender}>{message.senderId}</Typography>
+          <Chip color="secondary" avatar={
+            <Avatar src={
+              Object.values(message.userStore.users).filter((user) => {
+                return user.id === message.senderId
+              })[0].avatarURL
+            } alt="avatar" className={classes.avatar} />
+          }
+            label={message.text}
+            className={classes.chip}
+          >
+          </Chip>
+          <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
+        </div>
+      ) : (
+          <div>
+            <Typography variant="overline" align="left" className={classes.sender}>{message.senderId}</Typography>
+            <Chip color="primary" avatar={
+              <Avatar src={
+                Object.values(message.userStore.users).filter((user) => {
+                  return user.id === message.senderId
+                })[0].avatarURL
+              } alt="avatar" className={classes.avatar} />
+            }
+              label={message.text}
+              className={classes.chip}
+            />
+            <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
+          </div>
+        )}
     </div>
   )
 }

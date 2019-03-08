@@ -13,7 +13,7 @@ import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 import uuid from 'uuid/v4';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     textAlign: 'center',
   },
@@ -51,13 +51,13 @@ export class RoomList extends Component {
                   return (
                     <MenuItem href="#" key={uuid()} className={classes.menuItem} onClick={() => subscribeToRoom(room.id)}>
                       <Icon color="action" >sms</Icon>
-                  <ListItemText inset primary={room.name}/>
+                      <ListItemText inset primary={room.name} />
                     </MenuItem>
                   )
                 })
                 }
               </MenuList>
-                <Button variant="contained" align="center" color="primary" onClick={this.handleClick}>
+              <Button variant="contained" align="center" color="primary" onClick={this.handleClick}>
                 create room <Icon className={classes.rightIcon}>group_add</Icon>
               </Button>
             </div>

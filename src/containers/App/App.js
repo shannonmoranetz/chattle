@@ -27,8 +27,8 @@ export class App extends Component {
         {isLoading ? (
           <Loader />
         ) : (
-          <ChatBox />
-        )}
+            <ChatBox />
+          )}
       </div>
     )
   }

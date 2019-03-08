@@ -32,7 +32,7 @@ const styles = (theme) => ({
     width: 170,
     height: 170,
     '&:hover': {
-      boxShadow: '8px 8px 10px black',
+      boxShadow: '8px 8px 10px #bfbfbf',
       cursor: 'pointer'
     },
   },
@@ -40,7 +40,7 @@ const styles = (theme) => ({
     margin: 10,
     width: 170,
     height: 170,
-    boxShadow: '8px 8px 10px black',
+    boxShadow: '8px 8px 10px #9c9c9c',
     cursor: 'pointer'
   },
   rightIcon: {
@@ -53,9 +53,9 @@ const styles = (theme) => ({
     backgroundColor: 'white',
     'label[data-shrink=false] + & ::-webkit-input-placeholder': {
       opacity: '0.5 !important',
-  },
-  paddingLeft: 5,
-  fontSize: 26
+    },
+    paddingLeft: 5,
+    fontSize: 26
   },
   login: {
     marginTop: 15,
@@ -74,9 +74,6 @@ const styles = (theme) => ({
   summary: {
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,
-      '& $primary, & $icon': {
-        color: theme.palette.common.white,
-      },
     },
   }
 });
@@ -155,8 +152,8 @@ class UserForm extends Component {
           </Toolbar>
         </AppBar>
         <ExpansionPanel>
-          <ExpansionPanelSummary className={classes.summary} justify="center" expandIcon={<ExpandMoreIcon fontSize="large"/>}>
-          <Typography variant="h5" gutterBottom justify="center" className={classes.instruction}>First visit? Click to select a chat avatar before logging in:</Typography>
+          <ExpansionPanelSummary className={classes.summary} justify="center" expandIcon={<ExpandMoreIcon fontSize="large" />}>
+            <Typography variant="h5" gutterBottom justify="center" className={classes.instruction}>First visit? Click to select a chat avatar before logging in:</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Grid container justify="center" alignItems="center" >

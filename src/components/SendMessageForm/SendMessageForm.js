@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     width: '100%'
@@ -64,17 +64,17 @@ export class SendMessageForm extends Component {
     return (
       <form className={classes.root} onSubmit={this.handleSubmit}>
         <FormControl error={message.length > 125 ? (true) : (false)} className={classes.stickToBottom}>
-              <InputLabel htmlFor="message-input" className={classes.label}>{message.length > 125 ? ('Message too long!') : ('Type a message...')}</InputLabel>
-              <Input className={classes.userForm} onChange={this.handleChange}
-                id="message-input"
-                type="text"
-                autoComplete='off'
-                value={this.state.message}
-              />
+          <InputLabel htmlFor="message-input" className={classes.label}>{message.length > 125 ? ('Message too long!') : ('Type a message...')}</InputLabel>
+          <Input className={classes.userForm} onChange={this.handleChange}
+            id="message-input"
+            type="text"
+            autoComplete='off'
+            value={this.state.message}
+          />
         </FormControl>
-              <Button variant="contained" onClick={this.handleSubmit} color="secondary" className={classes.sendButton}>
-                <Icon >send</Icon>
-              </Button>
+        <Button variant="contained" onClick={this.handleSubmit} color="secondary" className={classes.sendButton}>
+          <Icon >send</Icon>
+        </Button>
       </form>
     )
   }

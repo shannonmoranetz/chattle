@@ -23,7 +23,6 @@ import List from '@material-ui/core/List';
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 
-
 const drawerWidth = 200;
 
 const styles = (theme) => ({
@@ -47,15 +46,16 @@ const styles = (theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    overflowY: 'hidden'
+    overflowY: 'hidden',
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#fafafa'
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
-    paddingRight: 24
+    paddingRight: 24,
   },
   flexItem: {
     display: 'flex',

@@ -11,25 +11,25 @@ import DialogContent from '@material-ui/core/DialogContent';
 import toDate from 'normalize-date';
 import uuid from 'uuid/v4';
 
-const styles={}
+const styles = {}
 
 export class MessageList extends Component {
-  
+
   Transition = (props) => {
     return <Slide direction="down" {...props} />;
   }
 
   cleanTimestamp = (message) => {
     if (this.props.messages.length > 0) {
-    let cleanedTime = toDate(message.createdAt);
-    let hours = cleanedTime.getHours();
-    let minutes = cleanedTime.getMinutes();
-    let meridian = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    let timeSting = hours + ':' + minutes + ' ' + meridian;
-    return timeSting;
+      let cleanedTime = toDate(message.createdAt);
+      let hours = cleanedTime.getHours();
+      let minutes = cleanedTime.getMinutes();
+      let meridian = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      let timeSting = hours + ':' + minutes + ' ' + meridian;
+      return timeSting;
     } else {
       return null;
     }
@@ -41,15 +41,15 @@ export class MessageList extends Component {
       <div className={classes.root}>
         {!currentRoomId ? (
           <Dialog keepMounted open={true} TransitionComponent={this.Transition} transitionDuration={1000}>
-              <DialogContent>
-                <RoomList subscribeToRoom={subscribeToRoom} createRoom={createRoom} />
-              </DialogContent>
+            <DialogContent>
+              <RoomList subscribeToRoom={subscribeToRoom} createRoom={createRoom} />
+            </DialogContent>
           </Dialog>
         ) : (
             <div className="messages">
               {messages.map((message) => {
                 return (
-                  <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)}/>
+                  <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)} />
                 )
               }).reverse()}
             </div>
