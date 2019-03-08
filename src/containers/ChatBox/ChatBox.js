@@ -121,7 +121,7 @@ export class ChatBox extends Component {
       resetMessages();
       let room = await this.currentUser.subscribeToRoom({
         roomId,
-        messageLimit: 80,
+        messageLimit: 40,
         hooks: {
           onMessage: message => {
             addMessage(message)

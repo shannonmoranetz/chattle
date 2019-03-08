@@ -27,7 +27,7 @@ const styles = {
   },
 }
 
-export const Message = ({ message, classes, currentUser }) => {
+export const Message = ({ message, classes, currentUser, timestamp }) => {
   return (
     <div className={classes.root}>
       { currentUser === message.senderId ? (
@@ -44,7 +44,7 @@ export const Message = ({ message, classes, currentUser }) => {
         className={classes.chip}
         >
         </Chip>
-        <Typography variant="body2" className={classes.timestamp}>{message.createdAt.substr(11).slice(0, -4)}</Typography>
+        <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
       </div>
       ) : (
         <div>
@@ -59,7 +59,7 @@ export const Message = ({ message, classes, currentUser }) => {
         label={message.text}
         className={classes.chip}
         />
-        <Typography variant="body2" className={classes.timestamp}>{message.createdAt.substr(11).slice(0, -4)}</Typography>
+        <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
       </div>
       )}
     </div>

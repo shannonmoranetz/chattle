@@ -17,9 +17,35 @@ const styles = {
 }
 
 export class MessageList extends Component {
-
+  
   Transition = (props) => {
     return <Slide direction="down" {...props} />;
+  }
+
+  cleanTimestamp = (message) => {
+    if (this.props.messages.length > 0) {
+    let shortenedTime = message.createdAt.substr(11).slice(0, -4);
+    let minutes = message.createdAt.substr(11).slice(3, 5);
+    let hour = parseInt(shortenedTime.slice(0, 2)) + 5;
+    let timeValue;
+    if (hour > 0 && hour <= 12) {
+      timeValue= "" + hour;
+    } else if (hour > 12) {
+      timeValue= "" + (hour - 12);
+    } else if (hour == 0) {
+      timeValue= "12";
+    }
+    let meridian ;
+    if (hour >= 12) {
+      meridian = 'AM'
+    } else {
+      meridian = 'PM'
+    }
+    let updatedTime = `${timeValue}:${minutes} ${meridian}`
+    return updatedTime
+    } else {
+      return null
+    }
   }
 
   render() {
@@ -27,8 +53,7 @@ export class MessageList extends Component {
     return (
       <div className={classes.root}>
         {!currentRoomId ? (
-          <Dialog keepMounted open={true}
-          TransitionComponent={this.Transition} transitionDuration={1000}>
+          <Dialog keepMounted open={true} TransitionComponent={this.Transition} transitionDuration={1000}>
               <DialogContent>
                 <RoomList subscribeToRoom={subscribeToRoom} createRoom={createRoom} />
               </DialogContent>
@@ -37,7 +62,7 @@ export class MessageList extends Component {
             <div className="messages">
               {messages.map((message, i) => {
                 return (
-                  <Message key={i} message={message} />
+                  <Message key={i} message={message} timestamp={this.cleanTimestamp(message)}/>
                 )
               }).reverse()}
             </div>
