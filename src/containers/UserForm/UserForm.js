@@ -101,7 +101,7 @@ class UserForm extends Component {
           <Header />
             <form onSubmit={this.onSubmit} className={classes.userForm}>
               <FormControl className={classes.userForm}>
-                <Grid justify="space-between" container >
+                <Grid container >
                   <Grid item>
                     <InputLabel htmlFor="login-input">Log in</InputLabel>
                     <Input
@@ -127,7 +127,7 @@ class UserForm extends Component {
           first visit? pick a chat avatar before logging in:
         </Typography>
         <Divider className={classes.divide} />
-        <Grid container justify="center" max-width="100%" alignItems="center" >
+        <Grid container justify="center" alignItems="center" >
           {avatars.filter((avatar) => {
             return avatar !== 'https://i.imgur.com/a7Y7Yor.png'
           })

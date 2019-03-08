@@ -7,30 +7,30 @@ import Message from '../../components/Message/Message';
 import PropTypes from 'prop-types';
 
 const styles = {
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    marginTop: 20,
-    marginRight: 40,
-    marginBottom: 80,
-    marginLeft: 40,
-    width: '100%'
-  }
+  // root: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   position: 'relative',
+  //   marginTop: 20,
+  //   marginRight: 40,
+  //   marginBottom: 80,
+  //   marginLeft: 40,
+    // width: '50%'
+  // }
 }
 
 export class MessageList extends Component {
 
-  getSnapshotBeforeUpdate = () => {
-    const node = ReactDOM.findDOMNode(this);
-    this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight;
-    return null;
-  }
+  // getSnapshotBeforeUpdate = () => {
+  //   const node = ReactDOM.findDOMNode(this);
+  //   this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight;
+  //   return null;
+  // }
 
-  componentDidUpdate = () => {
-    const node = ReactDOM.findDOMNode(this)
-    node.scrollTop = node.scrollHeight
-  }
+  // componentDidUpdate = () => {
+  //   const node = ReactDOM.findDOMNode(this)
+  //   node.scrollTop = node.scrollHeight
+  // }
 
   render() {
     let { currentRoomId, messages, classes } = this.props;

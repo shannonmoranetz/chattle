@@ -14,26 +14,26 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   stickToBottom: {
-    width: '100%',
-    position: 'fixed',
-    left: 200,
-    bottom: 20,
+    // width: '100%',
+    // position: 'fixed',
+    // left: 200,
+    // bottom: 20,
     borderTop: '1px solid #dedede',
-    borderLeft: '1px solid #dedede',
-    zIndex: theme.zIndex.drawer + 2,
+    // borderLeft: '1px solid #dedede',
+    // zIndex: theme.zIndex.drawer + 2,
     backgroundColor: 'white'
   },
   userForm: {
-    width: '90%',
+    // width: '90%',
     // paddingLeft: 5
   },
   sendButton: {
-    height: '100%',
-    zIndex: theme.zIndex.drawer + 3,
-    width: '100%'
+    // height: '100%',
+    // zIndex: theme.zIndex.drawer + 3,
+    // width: '100%'
   },
   underline: {
-    width: '200%'
+    // width: '200%'
   }
 })
 

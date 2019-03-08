@@ -17,7 +17,7 @@ const styles = {
     padding: 5
   },
   sender: {
-    marginLeft: 46
+    // marginLeft: 46
   }
 }
 

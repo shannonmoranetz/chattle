@@ -10,18 +10,30 @@ import Loader from '../../components/Loader/Loader';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = {
   root: {
-    display: 'flex',
-    flexDirection: 'column'
+    // display: 'flex',
+    // flexDirection: 'column'
+    // width: `calc(100% - ${240}px)`,
+    // marginLeft: 240,
+    // marginTop: 64
   },
-  stickToBottom: {
-    width: '100%',
-    position: 'fixed',
-    bottom: 0,
-    height: 20
-  }
+  // login: {
+  //   marginTop: 0
+  // }
+
+  // stickToBottom: {
+  //   width: '100%',
+  //   position: 'fixed',
+  //   bottom: 0,
+  //   height: 20
+  // }
 };
 
 export class App extends Component {
@@ -39,13 +51,16 @@ export class App extends Component {
         {this.props.isLoading ? (
           <Loader />
         ) : (
-            <div className="app-items">
+            // <div className={classes.root}>
+            <Dialog open={true}>
+
               <Route path='/' component={ChatBox} />
-            </div>
+            </Dialog>
+            // </div>
           )}
-        <AppBar position="static" color="primary" className={classes.stickToBottom}>
+        {/* <AppBar position="static" color="primary" className={classes.stickToBottom}>
           <Toolbar/>
-        </AppBar>
+        </AppBar> */}
       </div>
     )
   }
