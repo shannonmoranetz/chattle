@@ -1,11 +1,25 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-export const Loader = () => {
+const styles = {
+  root: {
+    display: 'flex',
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
+  loadTest: {
+    marginTop: '20%',
+    marginRight: '30%'
+  }
+}
+
+export const Loader = ({ classes }) => {
   return (
-    <div className="Loader">
-      <h2>loading...</h2>
+    <div className={classes.root}>
+      <Typography variant="h1" className={classes.loadTest}>Loading...</Typography>
     </div>
   )
 }
 
-export default Loader;
+export default withStyles(styles)(Loader)

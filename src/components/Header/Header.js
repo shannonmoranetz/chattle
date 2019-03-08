@@ -19,6 +19,9 @@ const styles = {
     fontFamily: 'Sacramento',
     marginLeft: 200,
     fontSize: 30
+  },
+  blob: {
+    fontSize: 68
   }
 };
 
@@ -27,7 +30,7 @@ export const Header = (props) => {
   return (
     <div className={classes.root}>
           <Typography className={classes.title} variant="h1" align="center">
-            Chattle <Icon fontSize="large">favorite_border</Icon>
+            Chattle <Icon className={classes.blob}>favorite_border</Icon>
           </Typography>
           <Typography variant="subtitle1" align="center" className={classes.subtitle}>Chat with your friends!</Typography>
     </div>

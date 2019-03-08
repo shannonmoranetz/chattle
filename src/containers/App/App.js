@@ -17,7 +17,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import UserForm from '../UserForm/UserForm';
 
-
 const styles = (theme) => ({
   root: {
     width: `calc(100% - ${200}px)`,

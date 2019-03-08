@@ -38,7 +38,7 @@ const drawerWidth = 200;
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
   },
   avatar: {
     height: '85%',
@@ -64,6 +64,8 @@ const styles = (theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
+    paddingRight: 24
+
   },
   flexItem: {
     display: 'flex',
@@ -92,7 +94,8 @@ const styles = (theme) => ({
     justifyContent: 'center',
     letterSpacing: 0.4,
     lineHeight: 1.5,
-    marginTop: 4
+    marginTop: 4,
+    fontFamily: 'Roboto Condensed'
   },
   roomGreeting: {
     fontSize: 16,
@@ -216,7 +219,7 @@ export class ChatBox extends Component {
               <ListItem >
                 <Typography className={classes.title} variant="h3" align="center">Chattle</Typography><Icon>favorite_border</Icon>
               </ListItem>
-              <ListItem button >
+              <ListItem >
                 <Button className={classes.centeredItem} variant="contained" color="secondary" onClick={() => window.location.reload()}>log out <Icon className={classes.rightIcon}>exit_to_app</Icon></Button>
               </ListItem>
               <Divider />
@@ -225,7 +228,7 @@ export class ChatBox extends Component {
               </ListItem>
               <Divider />
               <ListItem className={classes.listItem}>
-                <Typography variant="overline" className={classes.userGreeting}>{currentUser}</Typography>
+                <Typography className={classes.userGreeting}>{currentUser}</Typography>
               </ListItem>
               {currentRoomId && <Typography variant="overline" className={classes.roomGreeting}>#{this.getRoomDisplay()}</Typography>}
               <ListItem className={classes.listItem}>

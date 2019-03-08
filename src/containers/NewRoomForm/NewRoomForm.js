@@ -93,7 +93,8 @@ export class NewRoomForm extends Component {
                 />
               </Grid>
               <Grid item>
-                <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>
+              
+                <Button variant="contained" color="secondary" type="submit" onClick={this.onSubmit} className={classes.login}>
                   Create <Icon className={classes.rightIcon}>library_add</Icon>
                 </Button>
                 <Button variant="contained" color="secondary" onClick={this.moveBack} className={classes.login}>

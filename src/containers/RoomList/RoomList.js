@@ -14,15 +14,16 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 
-
 const styles = theme => ({
   root: {
     textAlign: 'center',
   },
-
+  rightIcon: {
+    marginLeft: 10
+  },
   menuItem: {
     padding: 6
-  }
+  },
 });
 
 export class RoomList extends Component {
@@ -57,7 +58,7 @@ export class RoomList extends Component {
                 })
                 }
               </MenuList>
-              <Button variant="contained" align="center" color="primary" onClick={this.handleClick}>
+                <Button variant="contained" align="center" color="primary" onClick={this.handleClick}>
                 create room <Icon className={classes.rightIcon}>group_add</Icon>
               </Button>
             </div>

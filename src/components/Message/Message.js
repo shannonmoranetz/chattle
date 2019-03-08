@@ -16,17 +16,20 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 5,
+    padding: 4,
   },
   sender: {
     marginLeft: 48,
     fontSize: 13,
-    letterSpacing: 0.4
+    letterSpacing: 0.4,
   },
   timestamp: {
     marginLeft: 62,
     color: '#dedede'
   },
+  chip: {
+    fontSize: 16,
+  }
 }
 
 export const Message = ({ message, classes, currentUser, timestamp }) => {

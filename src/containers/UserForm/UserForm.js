@@ -16,14 +16,12 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import Header from '../../components/Header/Header';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = theme => ({
   root: {
@@ -50,7 +48,8 @@ const styles = theme => ({
     'label[data-shrink=false] + & ::-webkit-input-placeholder': {
       opacity: '0.5 !important',
   },
-  paddingLeft: 5
+  paddingLeft: 5,
+  fontSize: 26
   },
   login: {
     marginTop: 15,
