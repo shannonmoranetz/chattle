@@ -52,7 +52,7 @@ export class NewRoomForm extends Component {
     event.preventDefault();
     const name = roomName.toLowerCase();
     if (name.length > 12) {
-      alert('Room length may not exceed 12 characters. Please try again with a shorter name!')
+      alert('Room name may not exceed 12 characters. Please try again with a shorter name!')
       return;
     }
     try {

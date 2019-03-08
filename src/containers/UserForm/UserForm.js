@@ -95,6 +95,10 @@ class UserForm extends Component {
     let { username, avatar } = this.state;
     let { updateCurrentUser, initializeChat, history, setError } = this.props;
     event.preventDefault();
+    if (username.length > 10) {
+      alert('Username may not exceed 10 characters. Please try again with a shorter username!')
+      return;
+    }
     try {
       await fetch('https://chattle-auth.herokuapp.com/users', {
         method: 'POST',
@@ -130,6 +134,7 @@ class UserForm extends Component {
 
   render() {
     let { classes } = this.props;
+    let { username } = this.state;
     return (
       <div className={classes.root}>
         <AppBar position="relative" className={classes.appBar}>
@@ -140,8 +145,8 @@ class UserForm extends Component {
               </Grid>
               <Grid item>
                 <form onSubmit={this.onSubmit} className={classes.userForm}>
-                  <FormControl className={classes.userForm}>
-                    <InputLabel htmlFor="login-input">Create a user or log in</InputLabel>
+                  <FormControl error={username.length > 10 ? (true) : (false)} className={classes.userForm}>
+                    <InputLabel htmlFor="login-input">{username.length > 10 ? ('Username too long!') : ('Create a user or log in')}</InputLabel>
                     <Input id="login-input" placeholder="Username" type="text" className={classes.userInput} onChange={this.onChange} autoFocus={true} />
                     <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>lock_open</Icon></Button>
                   </FormControl>
