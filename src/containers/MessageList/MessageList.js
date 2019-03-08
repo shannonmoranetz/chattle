@@ -28,7 +28,7 @@ export class MessageList extends Component {
       <div className={classes.root}>
         {!currentRoomId ? (
           <Dialog keepMounted open={true}
-          TransitionComponent={this.Transition} transitionDuration={1800}>
+          TransitionComponent={this.Transition} transitionDuration={1000}>
               <DialogContent>
                 <RoomList subscribeToRoom={subscribeToRoom} createRoom={createRoom} />
               </DialogContent>

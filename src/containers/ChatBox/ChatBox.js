@@ -30,6 +30,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import Slide from '@material-ui/core/Slide';
+
 
 const drawerWidth = 200;
 
@@ -80,6 +82,10 @@ const styles = (theme) => ({
 });
 
 export class ChatBox extends Component {
+
+  Transition = (props) => {
+    return <Slide direction="up" {...props} />;
+  }
 
   initializeChat = async () => {
     const chatManager = new Chatkit.ChatManager({
@@ -150,11 +156,10 @@ export class ChatBox extends Component {
     let { currentUser, currentRoomId, avatar, classes } = this.props;
     return (
       <div className={classes.root}>
-        {!currentUser ? (
-          <Dialog open={true} maxWidth="xl">
+        {!currentUser &&
+          <Dialog open={true} maxWidth="xl" TransitionComponent={this.Transition} transitionDuration={1000}>
             <UserForm initializeChat={this.initializeChat}/>
-          </Dialog>
-        ) : (
+          </Dialog>}
         <div >
           <Drawer className={classes.drawer} variant="permanent" anchor="left"
             classes={{
@@ -191,7 +196,6 @@ export class ChatBox extends Component {
             </Toolbar>
           </AppBar>
         </div>
-      )}
       </div>
     )
   }
