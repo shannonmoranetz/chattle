@@ -18,56 +18,40 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import UserForm from '../UserForm/UserForm';
 
 
-const styles = {
+const styles = (theme) => ({
   root: {
-    // display: 'flex',
-    // flexDirection: 'column'
     width: `calc(100% - ${200}px)`,
     marginLeft: 200,
-    // marginTop: 64
   },
-  // login: {
-  //   marginTop: 0
-  // }
-
-  // stickToBottom: {
-  //   width: '100%',
-  //   position: 'fixed',
-  //   bottom: 0,
-  //   height: 20
-  // }
-};
+});
 
 export class App extends Component {
 
   componentDidMount = () => {
-    let { history, setLoading } = this.props;
-    // history.push('/login');
-    setLoading(false);
+    this.props.setLoading(false);
   }
 
   render() {
-    // <Loader />
-    let { classes, isLoading, currentUser } = this.props;
+    let { classes, isLoading } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes.root} id="App">
+        {isLoading ? (
+          <Loader />
+        ) : (
           <ChatBox />
-
+        )}
       </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => ({
-  isLoading: state.isLoading,
-  currentUser: state.currentUser
+  isLoading: state.isLoading
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   setLoading: (isLoading) => dispatch(setLoading(isLoading))
 })
-
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 export default compose(
   withRouter,

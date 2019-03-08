@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Message from '../../components/Message/Message';
 import PropTypes from 'prop-types';
+import Dialog from '@material-ui/core/Dialog';
+import Slide from '@material-ui/core/Slide';
+import RoomList from '../../containers/RoomList/RoomList';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+
 
 const styles = {
   // root: {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   position: 'relative',
-  //   marginTop: 20,
-  //   marginRight: 40,
-  //   marginBottom: 80,
-  //   marginLeft: 40,
-    // width: '50%'
   // }
 }
 
 export class MessageList extends Component {
 
+  Transition = (props) => {
+    return <Slide direction="down" {...props} />;
+  }
+
   render() {
-    let { currentRoomId, messages, classes } = this.props;
+    let { currentRoomId, messages, classes, subscribeToRoom, createRoom } = this.props;
     return (
       <div className={classes.root}>
         {!currentRoomId ? (
-          <div className="join-room">join a room to see messages...</div>
+          <Dialog keepMounted open={true} 
+          TransitionComponent={this.Transition} transitionDuration={2500}>
+            <DialogTitle>{"available rooms:"}</DialogTitle>
+              <DialogContent>
+                <RoomList subscribeToRoom={subscribeToRoom} createRoom={createRoom} />
+              </DialogContent>
+          </Dialog>
         ) : (
             <div className="messages">
               {messages.map((message, i) => {
                 return (
                   <Message key={i} message={message} />
                 )
-              })}
+              }).reverse()}
             </div>
           )}
       </div>

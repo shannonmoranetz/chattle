@@ -27,7 +27,8 @@ import Drawer from '@material-ui/core/Drawer';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Dialog from '@material-ui/core/Dialog';
-import ReactDOM from 'react-dom';
+import DialogContent from '@material-ui/core/DialogContent';
+
 
 
 
@@ -36,6 +37,7 @@ const drawerWidth = 200;
 const styles = (theme) => ({
   root: {
     display: 'flex',
+
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -50,16 +52,11 @@ const styles = (theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
-  contentContainer: {
-    // width: `calc(100% - ${drawerWidth}px)`,
-    // marginLeft: drawerWidth,
-  }
 });
 
 export class ChatBox extends Component {
@@ -160,30 +157,17 @@ export class ChatBox extends Component {
                   <p className="user-greeting">hello, {currentUser}</p>
                 </ListItem>
                 <ListItem >
-                  <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} /> {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
+                  <RoomList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/> {currentUser && <Avatar src={avatar} className={classes.avatar} alt='avatar' />}
                 </ListItem>
               </List>
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar}/>
-              {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
-              {currentUser && <MessageList />}
-              <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                donec massa sapien faucibus et molestie ac.
-              </Typography>
+              {currentUser && <MessageList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom}/>}
           </main>
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-              <Typography variant="h6" color="inherit" noWrap>Permanent drawer</Typography>
+              {currentRoomId && <SendMessageForm sendMessage={this.sendMessage} />}
             </Toolbar>
           </AppBar>
         </div>

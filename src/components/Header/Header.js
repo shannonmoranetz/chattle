@@ -32,14 +32,6 @@ export const Header = (props) => {
             <img src="https://i.imgur.com/XVCBZ72.png" className="heart-icon" alt="heart"></img>
           </Typography>
         </Grid>
-        <Hidden xsDown>
-        <Grid item xs={4} className={classes.subtitle}>
-        <Typography variant="subtitle1" className={classes.subtitle}>
-          chat with your friends!
-        </Typography>
-      </Grid>
-        </Hidden>
-
       </Grid>
     </div>
   )

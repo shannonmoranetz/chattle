@@ -37,7 +37,6 @@ export class RoomList extends Component {
         ) : (
             <div className={classes.content}>
         <h3>rooms:</h3>
-
               <ul>
                 {rooms.map(room => {
                   const active = currentRoomId === room.id ? '-active' : '';
