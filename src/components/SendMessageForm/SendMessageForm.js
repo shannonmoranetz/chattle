@@ -14,6 +14,7 @@ const styles = (theme) => ({
   },
   stickToBottom: {
     borderTop: '1px solid #dedede',
+    borderLeft: '1px solid #dedede',
     backgroundColor: 'white',
     width: `calc(100% - ${200}px)`,
     marginLeft: 200,
@@ -27,7 +28,9 @@ const styles = (theme) => ({
   },
   sendButton: {
     minWidth: 90,
-    borderRadius: 0
+    borderRadius: 0,
+    color: '#616161',
+    textShadow: '1px 1px 1px white',
   },
   label: {
     paddingLeft: 5,
@@ -72,7 +75,7 @@ export class SendMessageForm extends Component {
             value={this.state.message}
           />
         </FormControl>
-        <Button variant="contained" onClick={this.handleSubmit} color="secondary" className={classes.sendButton}>
+        <Button variant="contained" onClick={this.handleSubmit} color="primary" className={classes.sendButton}>
           <Icon >send</Icon>
         </Button>
       </form>

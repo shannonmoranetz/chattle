@@ -18,10 +18,12 @@ const styles = (theme) => ({
     textAlign: 'center',
   },
   rightIcon: {
-    marginLeft: 10
+    marginLeft: 10,
+    color: '#616161'
   },
   menuItem: {
-    padding: 6
+    padding: 6,
+    color: '#616161'
   },
 });
 

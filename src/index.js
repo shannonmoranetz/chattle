@@ -15,6 +15,17 @@ const store = createStore(rootReducer, devTools);
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true
+  },
+  palette: {
+    primary: {
+      main: '#C6F3F4'
+    },
+    secondary: {
+      main: '#FCF2D6'
+    },
+    error: {
+      main: '#E5898C'
+    }
   }
 })
 

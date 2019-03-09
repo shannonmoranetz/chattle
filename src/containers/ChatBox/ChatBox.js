@@ -65,6 +65,7 @@ const styles = (theme) => ({
     width: '100%',
     textAlign: 'center',
     justifyContent: 'center',
+    color: '#616161'
   },
   title: {
     fontFamily: 'Sacramento',
@@ -84,7 +85,8 @@ const styles = (theme) => ({
     letterSpacing: 0.4,
     lineHeight: 1.5,
     marginTop: 4,
-    fontFamily: 'Roboto Condensed'
+    fontFamily: 'Roboto Condensed',
+    color: '#616161'
   },
   roomGreeting: {
     fontSize: 16,
@@ -92,7 +94,7 @@ const styles = (theme) => ({
     textAlign: 'center',
     justifyContent: 'center',
     letterSpacing: 0.4,
-    color: '#dedede',
+    color: '#bfbfbf',
   },
   listItem: {
     padding: 0

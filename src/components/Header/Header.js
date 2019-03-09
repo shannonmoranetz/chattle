@@ -11,7 +11,7 @@ const styles = {
   title: {
     fontFamily: 'Sacramento',
     marginTop: 25,
-    textShadow: '2px 2px 2px #658c91'
+    textShadow: '4px 4px 4px white'
   },
   subtitle: {
     fontFamily: 'Sacramento',

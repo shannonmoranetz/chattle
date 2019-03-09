@@ -55,15 +55,18 @@ const styles = (theme) => ({
       opacity: '0.5 !important',
     },
     paddingLeft: 5,
-    fontSize: 26
+    fontSize: 26,
+    color: '#F7A3AF'
   },
   login: {
     marginTop: 15,
     marginBottom: 30,
+    color: '#616161'
   },
   instruction: {
     marginTop: 15,
     justifyContent: 'center',
+    color: '#616161'
   },
   divide: {
     marginBottom: 15
@@ -144,7 +147,7 @@ class UserForm extends Component {
                   <FormControl error={username.length > 10 ? (true) : (false)} className={classes.userForm}>
                     <InputLabel htmlFor="login-input">{username.length > 10 ? ('Username too long!') : ('Create a user or log in')}</InputLabel>
                     <Input id="login-input" placeholder="Username" type="text" className={classes.userInput} onChange={this.onChange} autoFocus={true} />
-                    <Button variant="contained" color="secondary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>lock_open</Icon></Button>
+                    <Button variant="contained" color="primary" onClick={this.onSubmit} className={classes.login}>Log In!<Icon className={classes.rightIcon}>lock_open</Icon></Button>
                   </FormControl>
                 </form>
               </Grid>

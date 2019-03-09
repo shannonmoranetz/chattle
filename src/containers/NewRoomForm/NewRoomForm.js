@@ -25,7 +25,8 @@ const styles = {
     flexDirection: 'column'
   },
   rightIcon: {
-    marginLeft: 10
+    marginLeft: 10,
+    color: '#616161'
   },
   login: {
     width: '100%',
@@ -86,7 +87,7 @@ export class NewRoomForm extends Component {
           <FormControl error={roomName.length > 12 ? (true) : (false)} className={classes.userForm}>
             <Grid container direction="column">
               <Grid item>
-                <InputLabel htmlFor="newroom-input">{roomName.length > 12 ? ('Name too long!') : ('Room Name')}</InputLabel>
+                <InputLabel htmlFor="newroom-input">{roomName.length > 12 ? ('Room name too long!') : ('Room Name')}</InputLabel>
                 <Input
                   id="newroom-input"
                   type="text"

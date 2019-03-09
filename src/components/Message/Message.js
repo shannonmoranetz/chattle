@@ -21,6 +21,7 @@ const styles = {
     marginLeft: 48,
     fontSize: 13,
     letterSpacing: 0.4,
+    color: '#9bcede'
   },
   timestamp: {
     marginLeft: 62,
