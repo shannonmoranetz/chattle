@@ -1,13 +1,13 @@
 export const avatars = [
-'https://i.imgur.com/a7Y7Yor.png',
-'https://i.imgur.com/7GJpvzc.png',
-'https://i.imgur.com/LXFUz8N.png',
-'https://i.imgur.com/6Ndcz6F.png',
-'https://i.imgur.com/0c8sgSA.png',
-'https://i.imgur.com/pWYafoc.png',
-'https://i.imgur.com/F4DUYZg.png',
-'https://i.imgur.com/OoVg7aM.png',
-'https://i.imgur.com/Vi6yQ40.png',
-'https://i.imgur.com/Zuf1k9n.png',
-'https://i.imgur.com/TfGsYno.png'
+  'https://i.imgur.com/m9FlHPe.png',
+  'https://i.imgur.com/CQOnLs5.png',
+  'https://i.imgur.com/52Pi185.png',
+  'https://i.imgur.com/912WnQx.png',
+  'https://i.imgur.com/L3VphqN.png',
+  'https://i.imgur.com/xgvhMhX.png',
+  'https://i.imgur.com/T09zny2.png',
+  'https://i.imgur.com/wJRUTyj.png',
+  'https://i.imgur.com/XrugS7E.png',
+  'https://i.imgur.com/m51d0u6.png',
+  'https://i.imgur.com/aPgCF1q.png'
 ]
