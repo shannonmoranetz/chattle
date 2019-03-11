@@ -8,6 +8,5 @@ export const avatars = [
   'https://i.imgur.com/T09zny2.png',
   'https://i.imgur.com/wJRUTyj.png',
   'https://i.imgur.com/XrugS7E.png',
-  'https://i.imgur.com/m51d0u6.png',
-  'https://i.imgur.com/aPgCF1q.png'
+  'https://i.imgur.com/m51d0u6.png'
 ]
