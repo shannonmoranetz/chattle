@@ -12,6 +12,7 @@ const styles = (theme) => ({
     width: `calc(100% - ${200}px)`,
     marginLeft: 200,
   },
+  overflowY: 'hidden'
 });
 
 export class App extends Component {

@@ -11,9 +11,37 @@ import DialogContent from '@material-ui/core/DialogContent';
 import toDate from 'normalize-date';
 import uuid from 'uuid/v4';
 
-const styles = {}
+const styles = (theme) => ({
+  root: {
+    height: '90vh',
+    width: '100vw',
+    overflowY: 'scroll',
+    direction: 'rtl',
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3
+  },
+  item: {
+    direction: 'ltr'
+  },
+  dummy: {
+    float: 'left', 
+    clear: 'both'
+  }
+})
 
 export class MessageList extends Component {
+
+  componentDidMount = () => {
+    this.autoScrollMessages();
+  }
+  
+  componentDidUpdate = () => {
+    this.autoScrollMessages();
+  }
+  
+  autoScrollMessages = () => {
+    this.endMessages.scrollIntoView({ behavior: "smooth" });
+  }
 
   Transition = (props) => {
     return <Slide direction="down" {...props} />;
@@ -46,14 +74,17 @@ export class MessageList extends Component {
             </DialogContent>
           </Dialog>
         ) : (
-            <div className="messages">
+            <div className={classes.item}>
               {messages.map((message) => {
                 return (
                   <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)} />
                 )
-              }).reverse()}
+              })}
             </div>
           )}
+        <div className={classes.dummy}
+          ref={(element) => { this.endMessages = element }}>
+        </div>
       </div>
     )
   }

@@ -29,6 +29,7 @@ const styles = (theme) => ({
   root: {
     display: 'flex',
     overflowX: 'hidden',
+    overflowY: 'hidden',
   },
   avatar: {
     height: '85%',
@@ -53,9 +54,7 @@ const styles = (theme) => ({
     backgroundColor: '#fafafa'
   },
   content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-    paddingRight: 24,
+    flexGrow: 1
   },
   flexItem: {
     display: 'flex',
