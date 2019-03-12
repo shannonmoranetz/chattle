@@ -104,6 +104,12 @@ const styles = (theme) => ({
 });
 
 export class ChatBox extends Component {
+  constructor() {
+    super();
+    this.state = {
+      messages: []
+    }
+  }
 
   Transition = (props) => {
     return <Slide direction="up" {...props} />;
@@ -137,15 +143,15 @@ export class ChatBox extends Component {
   }
 
   subscribeToRoom = async (roomId) => {
-    let { resetMessages, addMessage, updateCurrentRoom, setError } = this.props;
+    let { updateCurrentRoom, setError } = this.props;
     try {
-      resetMessages();
+      this.setState({ messages: [] })
       let room = await this.currentUser.subscribeToRoom({
         roomId,
         messageLimit: 40,
         hooks: {
           onMessage: message => {
-            addMessage(message)
+            this.setState({ messages: [...this.state.messages, message] })
           }
         }
       })
@@ -200,9 +206,7 @@ export class ChatBox extends Component {
           </Dialog>}
         <div >
           <Drawer className={classes.drawer} variant="permanent" anchor="left"
-            classes={{
-              paper: classes.drawerPaper,
-            }}>
+            classes={{ paper: classes.drawerPaper }}>
             <Divider />
             <List >
               <ListItem >
@@ -227,7 +231,7 @@ export class ChatBox extends Component {
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            {currentUser && <MessageList subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} />}
+            {currentUser && <MessageList messages={this.state.messages} subscribeToRoom={this.subscribeToRoom} createRoom={this.createRoom} />}
           </main>
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>

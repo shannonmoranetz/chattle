@@ -92,7 +92,7 @@ class UserForm extends Component {
 
   onSubmit = async (event) => {
     let { username, avatar } = this.state;
-    let { updateCurrentUser, initializeChat, history, setError } = this.props;
+    let { updateCurrentUser, initializeChat, setError } = this.props;
     event.preventDefault();
     if (username.length > 10) {
       alert('Username may not exceed 10 characters. Please try again with a shorter username!')
@@ -108,7 +108,6 @@ class UserForm extends Component {
       })
       updateCurrentUser(username);
       initializeChat();
-      history.push('/');
     } catch (error) {
       setError(`${error}`);
     }
