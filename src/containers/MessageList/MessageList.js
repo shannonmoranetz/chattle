@@ -91,7 +91,6 @@ export class MessageList extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  messages: state.messages,
   currentRoomId: state.currentRoomId
 })
 

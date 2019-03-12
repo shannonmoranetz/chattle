@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { resetMessages, addMessage, sortRooms, updateCurrentRoom, setError, setAvatar } from '../../actions';
+import { sortRooms, updateCurrentRoom, setError, setAvatar } from '../../actions';
 import Chatkit from '@pusher/chatkit-client';
 import { tokenProvider } from '../../utils/tokenProvider';
 import MessageList from '../../containers/MessageList/MessageList';
@@ -248,8 +248,6 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  resetMessages: (messages) => dispatch(resetMessages(messages)),
-  addMessage: (message) => dispatch(addMessage(message)),
   sortRooms: (rooms) => dispatch(sortRooms(rooms)),
   updateCurrentRoom: (roomId) => dispatch(updateCurrentRoom(roomId)),
   setError: (error) => dispatch(setError(error)),
