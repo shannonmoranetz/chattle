@@ -24,7 +24,7 @@ const styles = (theme) => ({
     direction: 'ltr'
   },
   dummy: {
-    float: 'left', 
+    float: 'left',
     clear: 'both'
   }
 })
@@ -34,11 +34,11 @@ export class MessageList extends Component {
   componentDidMount = () => {
     this.autoScrollMessages();
   }
-  
+
   componentDidUpdate = () => {
     this.autoScrollMessages();
   }
-  
+
   autoScrollMessages = () => {
     this.endMessages.scrollIntoView({ behavior: "smooth" });
   }
@@ -56,8 +56,27 @@ export class MessageList extends Component {
       hours = hours % 12;
       hours = hours ? hours : 12;
       minutes = minutes < 10 ? '0' + minutes : minutes;
-      let timeSting = hours + ':' + minutes + ' ' + meridian;
-      return timeSting;
+      let timeString = hours + ':' + minutes + ' ' + meridian;
+      return timeString;
+    } else {
+      return null;
+    }
+  }
+
+  cleanDate = (message) => {
+    if (this.props.messages.length > 0) {
+      let time = this.cleanTimestamp(message);
+      let today = toDate(message.createdAt)
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      today = mm + '/' + dd
+      return `${time} • ${today}`;
     } else {
       return null;
     }
@@ -77,7 +96,7 @@ export class MessageList extends Component {
             <div className={classes.item}>
               {messages.map((message) => {
                 return (
-                  <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)} />
+                  <Message key={uuid()} message={message} timestamp={this.cleanTimestamp(message)} fullDate={this.cleanDate(message)} />
                 )
               })}
             </div>

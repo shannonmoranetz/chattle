@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -32,29 +32,22 @@ const styles = {
   }
 }
 
-export const Message = ({ message, classes, currentUser, timestamp }) => {
-  return (
-    <div className={classes.root}>
-      {currentUser === message.senderId ? (
-        <div>
-          <Typography variant="overline" className={classes.sender}>{message.senderId}</Typography>
-          <Chip color="secondary" avatar={
-            <Avatar src={
-              Object.values(message.userStore.users).filter((user) => {
-                return user.id === message.senderId
-              })[0].avatarURL
-            } alt="avatar" className={classes.avatar} />
-          }
-            label={message.text}
-            className={classes.chip}
-          >
-          </Chip>
-          <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
-        </div>
-      ) : (
+export class Message extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dateIsDisplayed: true
+    }
+  }
+
+  render() {
+    let { classes, currentUser, message, timestamp, fullDate } = this.props;
+    return (
+      <div className={classes.root}>
+        {currentUser === message.senderId ? (
           <div>
-            <Typography variant="overline" align="left" className={classes.sender}>{message.senderId}</Typography>
-            <Chip color="primary" avatar={
+            <Typography variant="overline" className={classes.sender}>{message.senderId}</Typography>
+            <Chip color="secondary" clickable={true} avatar={
               <Avatar src={
                 Object.values(message.userStore.users).filter((user) => {
                   return user.id === message.senderId
@@ -63,12 +56,29 @@ export const Message = ({ message, classes, currentUser, timestamp }) => {
             }
               label={message.text}
               className={classes.chip}
-            />
-            <Typography variant="body2" className={classes.timestamp}>{timestamp}</Typography>
+            >
+            </Chip>
+            <Typography variant="body2" className={classes.timestamp}>{fullDate}</Typography>
           </div>
-        )}
-    </div>
-  )
+        ) : (
+            <div>
+              <Typography variant="overline" align="left" className={classes.sender}>{message.senderId}</Typography>
+              <Chip color="primary" clickable={true} avatar={
+                <Avatar src={
+                  Object.values(message.userStore.users).filter((user) => {
+                    return user.id === message.senderId
+                  })[0].avatarURL
+                } alt="avatar" className={classes.avatar} />
+              }
+                label={message.text}
+                className={classes.chip}
+              />
+              <Typography variant="body2" className={classes.timestamp}>{fullDate}</Typography>
+            </div>
+          )}
+      </div>
+    )
+  }
 }
 
 export const mapStateToProps = (state) => ({
