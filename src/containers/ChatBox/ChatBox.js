@@ -148,7 +148,7 @@ export class ChatBox extends Component {
       this.setState({ messages: [] })
       let room = await this.currentUser.subscribeToRoom({
         roomId,
-        messageLimit: 40,
+        messageLimit: 20,
         hooks: {
           onMessage: message => {
             this.setState({ messages: [...this.state.messages, message] })
